@@ -32,13 +32,15 @@
             <img class="logo" src="../assets/imgs/icon.png" alt="">
             <h1>Big Bang Theory</h1>
 
-            <div class="hello">
+            <div id="hello">
                 <img src="../assets/imgs/sem_foto.png" alt="">
                 <p><span id="b_usuario">usuário</span>!</p>
             </div>
 
             <div class="btn-nav">
-                <p>Aquários e Terrários</p>
+                <a href="cards.html">
+                    <p>Aquários e Terrários</p>
+                </a>
             </div>
 
             <div class="btn-nav-white">
@@ -65,7 +67,23 @@
         </div>
 
         <div class="dash">
+            <div class="dash-container">
 
+                <p>Escolher avatar</p>
+
+                <div class="fotos_personagens">
+                    <button onclick="escolherAvatar('1')"><img id="1" src="../assets/imgs/1.png" alt=""></button>
+                    <button onclick="escolherAvatar('2')"><img id="2" src="../assets/imgs/2.png" alt=""></button>
+                    <button onclick="escolherAvatar('3')"><img id="3" src="../assets/imgs/3.png" alt=""></button>
+                    <button onclick="escolherAvatar('4')"><img id="4" src="../assets/imgs/4.png" alt=""></button>
+                    <button onclick="escolherAvatar('5')"><img id="5" src="../assets/imgs/5.png" alt=""></button>
+                    <button onclick="escolherAvatar('6')"><img id="6" src="../assets/imgs/6.png" alt=""></button>
+                    <button onclick="escolherAvatar('7')"><img id="7" src="../assets/imgs/7.png" alt=""></button>
+                </div>
+
+                <button class="concluido" id="concluido" onclick="guardarFoto()">Concluído</button>
+
+            </div>
         </div>
 
     </div>
@@ -73,6 +91,56 @@
 </body>
 
 <script>
+
+    let quantidade = 0;
+    let escolhida = 0;
+
+    function escolherAvatar(escolha) {
+        if (quantidade == 0) {
+            quantidade++;
+            document.getElementById(escolha).classList.add("escolha");
+            escolhida = Number(escolha);
+            console.log(escolhida, escolha)
+            console.log(quantidade)
+
+        } else if (escolhida == escolha && quantidade > 0) {
+            quantidade = 0;
+            document.getElementById(escolha).classList.remove("escolha");
+            escolhida = 0;
+            console.log(escolhida)
+            console.log(quantidade)
+
+        } else {
+            alert("Você já escolheu um avatar! Desmarque ele se quiser mudar.")
+        }
+    }
+
+    let id = sessionStorage.ID_USUARIO;
+
+    function guardarFoto() {
+        if (escolhida != 0) {
+            fetch(`/usuarios/fotoPerfil/${escolhida}/${id}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+
+                    sessionStorage.FOTO_USUARIO = escolhida;
+                    document.getElementById(String(escolhida)).classList.remove("escolha");
+                    quantidade = 0;
+                    hello.innerHTML = `<img src="../assets/imgs/${escolhida}.png" alt="">
+                <p><span id="b_usuario">usuário</span>!</p>`;
+                    alert("Avatar escolhido!")
+
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+
+        } else {
+            alert("Escolha um avatar!")
+        }
+    }
 
     function exibirAquarios() {
         JSON.parse(sessionStorage.AQUARIOS).forEach(item => {

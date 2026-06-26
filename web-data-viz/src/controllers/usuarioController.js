@@ -38,7 +38,8 @@ function autenticar(req, res) {
                         res.json({
                             id: resultadoAutenticar[0].id_usuario,
                             nome: resultadoAutenticar[0].nome,
-                            senha: resultadoAutenticar[0].senha
+                            senha: resultadoAutenticar[0].senha,
+                            foto: resultadoAutenticar[0].foto_usuario
                         });
 
                     } else if (resultadoAutenticar.length == 0) {
@@ -89,7 +90,28 @@ function cadastrar(req, res) {
     }
 }
 
+function fotoPerfil(req, res) {
+
+    var escolhida = req.params.escolhida;
+    var id = req.params.id;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    usuarioModel.fotoPerfil(escolhida, id).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    fotoPerfil
 }

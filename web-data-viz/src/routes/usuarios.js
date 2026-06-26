@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/fotoPerfil/:escolhida/:id", function (req, res) {
+    usuarioController.fotoPerfil(req, res);
+});
+
 module.exports = router;

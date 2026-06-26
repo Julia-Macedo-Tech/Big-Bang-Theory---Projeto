@@ -136,9 +136,12 @@ body {
   position: relative;
   top: 0;
   left: 20%;
-  background-color: #161618;
+  background-color: #1a1a2e;
   height: 100vh;
   overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .area-parametros-alerta {
@@ -389,7 +392,7 @@ canvas {
   margin-right: 150px;
 }
 
-.hello {
+#hello {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -406,7 +409,7 @@ canvas {
   }
 }
 
-.hello p {
+#hello p {
   color: black;
   font-size: 20px;
 }
@@ -463,4 +466,62 @@ canvas {
   display: flex;
   flex-direction: row;
   height: 50px;
+}
+
+.fotos_personagens {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+
+  img {
+    width: 200px;
+    border-radius: 100px;
+    margin-right: 50px;
+    border: 4px #ffd600 solid;
+  }
+
+  button {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 220px;
+    background-color: transparent;
+    border: none;
+    border-radius: 100px;
+    margin-right: 50px;
+  }
+}
+
+.dash-container {
+  width: 98%;
+  height: 710px;
+  color: white;
+  font-family: "Bazinga";
+  border: 2px #ffd600 solid;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p {
+    font-size: 30px;
+  }
+
+  .concluido {
+    padding: 10px 20px;
+    background-color: #d5312c;
+    border: none;
+    border-radius: 10px;
+    margin-top: 40px;
+    font-family: "Bazinga";
+    font-size: 20px;
+    color: white;
+  }
+}
+
+.fotos_personagens .escolha {
+  border: 5px #e6005a solid !important;
 }
