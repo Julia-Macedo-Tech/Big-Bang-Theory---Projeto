@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@font-face {
+  font-family: "Bazinga";
+  src: url(../assets/fonte/Bazinga-Regular.otf);
+}
+
+@font-face {
+  font-family: "Bazinga Italic";
+  src: url(../assets/fonte/Bazinga-RegularItalic.otf);
+}
+
+@font-face {
+  font-family: "Open sans";
+  src: url(../assets/fonte/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open sans";
   background-color: black;
 }
 
@@ -23,7 +39,9 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  position: fixed;
+  width: 100%;
+  background-color: #00000055;
 }
 
 .header .container {
@@ -34,7 +52,7 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: #fff;
 }
 
 .agora {
@@ -47,13 +65,14 @@ body {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
+  color: #fff;
 }
 
 .titulo {
-  color: #32b9cd;
+  color: #ffd600;
   width: fit-content;
   font-weight: 500;
+  font-family: "Bazinga";
 }
 
 .header h1 {
@@ -63,27 +82,36 @@ body {
 /* BANNER */
 
 .banner {
-  height: var(--tamanho-banner);
+  height: 730px;
   color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/imgs/banner.png');
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .banner .container {
   justify-content: center;
   align-items: center;
-  height: 100%;
+  display: flex;
+  text-align: center;
+  width: 50%;
+  margin-top: 100px;
 }
 
 .banner .container p {
-  width: 50%;
   margin: 0;
   padding: 0;
-  font-size: 36px;
+  font-size: 120px;
+  font-family: "Bazinga";
 }
 
 .banner .container span {
-  font-weight: 800;
+  font-weight: bold;
+  font-size: 120px;
+  font-family: "Bazinga";
+  color: #ffd600;
 }
 
 /* MISSÃO VISÃO VALORES */
@@ -139,10 +167,54 @@ body {
 
 /* LOGIN */
 
+.img_formulário {
+  width: 48%;
+  margin-top: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 250px;
+  }
+
+  p{
+    color: #1a1a2e;
+    font-family: "Bazinga";
+    font-size: 55px;
+    margin-top: -1px;
+  }
+}
+
+#body_cadastro {
+  background-color: #ffd600;
+  display: flex;
+  flex-direction: row;
+}
+
+.cadastro {
+  height: 729px;
+  width: 48%;
+  background-color: #1a1a2e;
+}
+
+.cadastro .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#login_body {
+  background-color: #ffd600;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .login {
-  height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+  height: 729px;
+  width: 52%;
+  background-color: #1a1a2e;
 }
 
 .login .container {
@@ -152,21 +224,22 @@ body {
 }
 
 .card {
-  width: 50%;
-  background-color: #e5e5e5;
+  width: 80%;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: white;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
 }
 
-.card h2 {
+.card p {
   margin: 0;
-  font-size: 30px;
+  font-size: 50px;
+  font-family: "Bazinga Italic";
+  margin-bottom: 10px;
 }
 
 .formulario {
@@ -178,21 +251,22 @@ body {
 }
 
 .formulario span {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffd600;
+  margin-bottom: 10px;
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
   text-align: center;
   border-radius: 10px;
   margin: 0;
+  background-color: #ffffff3d;
 }
 
 .formulario select {
-  border: 2px solid #32b9cd;
   background-color: white;
-  color: gray;
+  color: #ffffff;
   height: 36px;
   text-align: center;
   border-radius: 10px;
@@ -208,15 +282,14 @@ body {
 
 .botao {
   cursor: pointer;
-  font-family: "Barlow", sans-serif;
+  font-family: "Bazinga";
   border: 0;
-  border-radius: 5px;
-  font-weight: 600;
+  border-radius: 8px;
   font-size: 18px;
-  color: #fff;
-  background-color: #ED145B;
-  width: 120px;
-  height: 30px;
+  color: #1a1a2e;
+  background-color: #ffd600;
+  width: 404px;
+  height: 40px;
   align-self: center;
   margin-top: 20px;
 }
@@ -235,9 +308,16 @@ body {
   display: none
 }
 
+.link {
+  padding-top: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
 }
@@ -254,7 +334,7 @@ body {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
+.card_erro #mensagem_erro {
   font-weight: 500;
   font-size: 20px;
 }
@@ -271,8 +351,8 @@ body {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
-  padding: 10px;
+  border: none;
+  padding: 12px;
   text-align: center;
   border-radius: 10px;
 }
@@ -310,7 +390,7 @@ input {
 
 .simulador .container {
   flex-direction: column;
-  overflow: scroll; 
+  overflow: scroll;
   height: var(--tamanho-simulador);
 }
 
@@ -354,9 +434,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }

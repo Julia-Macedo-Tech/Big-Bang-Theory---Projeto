@@ -2,10 +2,26 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@font-face {
+  font-family: "Bazinga";
+  src: url(../assets/fonte/Bazinga-Regular.otf);
+}
+
+@font-face {
+  font-family: "Bazinga Italic";
+  src: url(../assets/fonte/Bazinga-RegularItalic.otf);
+}
+
+@font-face {
+  font-family: "Open sans";
+  src: url(../assets/fonte/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open sans";
 }
 
 .label-captura {
@@ -345,10 +361,9 @@ canvas {
   width: 20%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  border-right: 3px solid #32b9cd;
-  background-color: #212124;
+  background-color: #ffd600;
 }
 
 .dash-right {
@@ -364,45 +379,59 @@ canvas {
 }
 
 .header-left h1 {
-  color: #32b9cd;
+  color: #1a1a2e;
+  font-family: "Bazinga Italic";
+}
+
+.logo {
+  width: 70px;
+  margin-bottom: -40px;
+  margin-right: 150px;
 }
 
 .hello {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-family: "Bazinga";
+
+  img {
+    border: 4px #1a1a2e solid;
+    border-radius: 35px;
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+  }
 }
 
-.hello h3 {
-  color: #e3b062;
-  font-weight: 300;
-  font-size: 1.2rem;
-}
-
-.hello h3 span {
-  font-weight: 800;
+.hello p {
+  color: black;
+  font-size: 20px;
 }
 
 .btn-nav {
   width: 40%;
-  color: white;
-  background-color: #e6005a;
+  color: #ffd600;
+  background-color: #1a1a2e;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
+  font-family: "Bazinga";
 }
 
 .btn-nav-white {
   width: 40%;
-  background-color: white;
-  border: 3px solid #e6005a;
+  background-color: #ffd600;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
+  font-family: "Bazinga";
 }
 
-.btn-nav-white h3 {
-  color: #e6005a;
+.btn-nav-white p {
+  color: #1a1a2e;
   padding: 0;
   margin: 0;
 }
@@ -413,15 +442,25 @@ canvas {
   padding: 0;
 }
 
+.btn-logout .material-symbols-outlined {
+  color: #1a1a2e;
+  font-size: 30px;
+}
+
 .btn-logout {
   margin: 0;
   padding: 0;
   width: 20%;
-  background-color: #32b9cd;
   color: white;
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
   margin-bottom: 100px;
   cursor: pointer;
+}
+
+.funcionalidades {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
 }
