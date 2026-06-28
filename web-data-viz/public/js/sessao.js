@@ -1,12 +1,19 @@
 // sessão
 function validarSessao() {
-    var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
+    var foto = sessionStorage.FOTO_USUARIO;
 
-    var b_usuario = document.getElementById("b_usuario");
+    var b_usuario = document.getElementById("hello");
 
-    if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
+    if (nome != null && foto != null) {
+        if (foto == 0) {
+            hello.innerHTML = `<img src="../assets/imgs/sem_foto.png" alt="">
+                <p><span id="b_usuario">${nome}</span></p>`;
+        } else {
+            hello.innerHTML = `<img src="../assets/imgs/${foto}.png" alt="">
+                <p><span id="b_usuario">${nome}</span></p>`;
+        }
+
     } else {
         window.location = "../login.html";
     }

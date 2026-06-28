@@ -402,16 +402,16 @@ canvas {
 
   img {
     border: 4px #1a1a2e solid;
-    border-radius: 35px;
-    width: 55px;
-    height: 55px;
+    border-radius: 40px;
+    width: 65px;
+    height: 65px;
     margin-right: 10px;
   }
 }
 
 #hello p {
   color: black;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .btn-nav {
@@ -460,6 +460,7 @@ canvas {
   padding: 10px 15px;
   margin-bottom: 100px;
   cursor: pointer;
+  height: 28px;
 }
 
 .funcionalidades {
@@ -505,6 +506,8 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url('../assets/imgs/fundo.png');
+  background-size: cover;
 
   p {
     font-size: 30px;
@@ -523,5 +526,24 @@ canvas {
 }
 
 .fotos_personagens .escolha {
-  border: 5px #e6005a solid !important;
+  border: 4px #d5312c solid !important;
+}
+
+.usando {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;
+  background-color: #1a1a2e;
+  height: 28px;
+  
+}
+
+.usando a {
+  color: #ffd600 !important;
 }

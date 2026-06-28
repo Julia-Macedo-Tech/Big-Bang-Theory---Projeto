@@ -23,7 +23,7 @@
 
 <!-- onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()" -->
 
-<body>
+<body onload="validarSessao()">
 
     <div class="janela">
 
@@ -32,12 +32,7 @@
             <img class="logo" src="../assets/imgs/icon.png" alt="">
             <h1>Big Bang Theory</h1>
 
-            <div id="hello">
-                <img src="../assets/imgs/sem_foto.png" alt="">
-                <p><span id="b_usuario">usuário</span>!</p>
-            </div>
-
-            <div class="btn-nav">
+            <div class="btn-nav-white">
                 <a href="cards.html">
                     <p>Aquários e Terrários</p>
                 </a>
@@ -55,11 +50,16 @@
                 </a>
             </div>
 
+            <div id="hello">
+                <img src="../assets/imgs/sem_foto.png" alt="">
+                <p><span id="b_usuario">usuário</span>!</p>
+            </div>
+
             <div class="funcionalidades">
                 <div class="btn-logout" onclick="limparSessao()">
                     <span class="material-symbols-outlined">logout</span>
                 </div>
-                <div class="btn-logout">
+                <div class="btn-logout usando">
                     <a class="material-symbols-outlined" href="">Settings</a>
                 </div>
             </div>
@@ -125,8 +125,7 @@
                     sessionStorage.FOTO_USUARIO = escolhida;
                     document.getElementById(String(escolhida)).classList.remove("escolha");
                     quantidade = 0;
-                    hello.innerHTML = `<img src="../assets/imgs/${escolhida}.png" alt="">
-                <p><span id="b_usuario">usuário</span>!</p>`;
+                    validarSessao();
                     alert("Avatar escolhido!")
 
                 } else {

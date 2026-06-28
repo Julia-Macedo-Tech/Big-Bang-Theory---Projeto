@@ -23,7 +23,7 @@
 
 <!-- onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()" -->
 
-<body>
+<body onload="validarSessao()">
 
     <div class="janela">
 
@@ -31,11 +31,6 @@
 
             <img class="logo" src="../assets/imgs/icon.png" alt="">
             <h1>Big Bang Theory</h1>
-
-            <div class="hello">
-                <img src="../assets/imgs/sem_foto.png" alt="">
-                <p><span id="b_usuario">usuário</span>!</p>
-            </div>
 
             <div class="btn-nav">
                 <p>Aquários e Terrários</p>
@@ -53,6 +48,11 @@
                 </a>
             </div>
 
+            <div id="hello">
+                <img src="../assets/imgs/sem_foto.png" alt="">
+                <p><span id="b_usuario">usuário</span>!</p>
+            </div>
+
             <div class="funcionalidades">
                 <div class="btn-logout" onclick="limparSessao()">
                     <span class="material-symbols-outlined">logout</span>
@@ -65,37 +65,7 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cards" id="cardAquarios">
+            <div class="dash-container">
 
             </div>
 
