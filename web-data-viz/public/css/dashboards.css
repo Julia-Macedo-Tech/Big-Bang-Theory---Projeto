@@ -541,9 +541,200 @@ canvas {
   cursor: pointer;
   background-color: #1a1a2e;
   height: 28px;
-  
+
 }
 
 .usando a {
   color: #ffd600 !important;
+}
+
+.container-jogo {
+  width: 100%;
+  height: 100%;
+  border: 3px #ffd600 solid;
+  border-radius: 15px;
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+}
+
+.luta {
+  background-image: url('../assets/imgs/luta.png');
+  background-size: cover;
+  background-color: #1a1a2e;
+}
+
+.puzzle {
+  background-image: url('../assets/imgs/puzzle.png');
+  background-size: cover;
+  background-color: #1a1a2e;
+}
+
+.container-jogo div {
+  width: 100%;
+  height: 30%;
+  background-color: #ffd600;
+  border-end-end-radius: 15px;
+  border-end-start-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Bazinga";
+}
+
+.container-jogo div p {
+  font-size: 22px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.jogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .esolha-texto {
+    margin-bottom: -50px;
+    margin-top: 70px;
+    font-size: 50px;
+  }
+
+  button {
+    width: 30%;
+    height: 55%;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: transparent;
+    border: none;
+  }
+
+  .jogo-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.container-puzzle {
+  background-color: #ffd600;
+  border-bottom: 28px #ffd600 solid;
+  border-top: 15px #ffd600 solid;
+  border-left: 12px #ffd600 solid;
+  width: 45%;
+  height: 68%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .igual {
+    width: 165px;
+    height: 165px;
+    background-color: #1a1a2e;
+    color: white;
+    font-size: 40px;
+    font-family: "Bazinga";
+    margin-left: -5px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .diferente {
+    width: 165px;
+    height: 165px;
+    color: white;
+    background-color: #1a1a2e25;
+    margin-left: -5px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+}
+
+#b1 {
+  background-image: url('../assets/imgs/b1.png');
+  background-size: cover;
+}
+
+#b2 {
+  background-image: url('../assets/imgs/b2.png');
+  background-size: cover;
+}
+
+#b3 {
+  background-image: url('../assets/imgs/b3.png');
+  background-size: cover;
+}
+
+#b4 {
+  background-image: url('../assets/imgs/b4.png');
+  background-size: cover;
+}
+
+#b5 {
+  background-image: url('../assets/imgs/b5.png');
+  background-size: cover;
+}
+
+#b6 {
+  background-image: url('../assets/imgs/b6.png');
+  background-size: cover;
+}
+
+#b7 {
+  background-image: url('../assets/imgs/b7.png');
+  background-size: cover;
+}
+
+#b8 {
+  background-image: url('../assets/imgs/b8.png');
+  background-size: cover;
+}
+
+.quantidade {
+  height: 50px;
+  width: 200px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  p {
+    font-size: 18px;
+    font-family: "Open sans";
+    color: #1a1a2e;
+    text-align: center;
+    background-color: #ffd600;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  span {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  button {
+    background-color: #ffd600;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  button span {
+    font-size: 20px;
+  }
 }
