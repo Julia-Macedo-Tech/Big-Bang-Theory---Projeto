@@ -62,9 +62,9 @@
         <div class="dash">
             <div class="dash-container jogo">
 
-                <!-- <p class="esolha-texto">Escolha um jogo</p>
+                <p class="esolha-texto" id="esolha-texto">Escolha um jogo</p>
 
-                <div class="jogo-div">
+                <div class="jogo-div" id="jogo-div">
                     <button>
                         <div class="container-jogo luta">
                             <div>
@@ -73,14 +73,14 @@
                         </div>
                     </button>
 
-                    <button>
+                    <button onclick="comecar_jogo_puzzle()">
                         <div class="container-jogo puzzle">
                             <div>
                                 <p>Puzzle</p>
                             </div>
                         </div>
                     </button>
-                </div> -->
+                </div>
 
                 <div class="quantidade" id="quantidade">
                     <p id="movimentos_div"><span class="material-symbols-outlined">Footprint</span>00</p>
@@ -128,15 +128,15 @@
     window.onload = embaralhar(), validarSessao(), onloadEsconder();
 
     function onloadEsconder() {
-        document.getElementById('escolher').style.display = "none";
-        document.getElementById('jogo').style.display = "none";
-        document.getElementById('div_cartas').style.display = "none";
-        document.getElementById('moeda').style.display = "none";
-        document.getElementById('div_vs').style.display = "none";
-        document.getElementById('vida_usuario').style.display = "none";
-        document.getElementById('vida_usuario_nome').style.display = "none";
-        document.getElementById('vida_maquina').style.display = "none";
-        document.getElementById('vida_maquina_nome').style.display = "none";
+        document.getElementById('quantidade').style.display = "none";
+        document.getElementById('container_puzzle').style.display = "none";
+    }
+
+    function comecar_jogo_puzzle() {
+        document.getElementById('quantidade').style.display = "flex";
+        document.getElementById('container_puzzle').style.display = "flex";
+        document.getElementById('esolha-texto').style.display = "none";
+        document.getElementById('jogo-div').style.display = "none";
     }
 
     function movimentos(posi) {
@@ -385,7 +385,7 @@
 
             setTimeout(() => {
                 alert("Você ganhou, parabéns!")
-            }, 3000);
+            }, 2000);
 
         } else {
 

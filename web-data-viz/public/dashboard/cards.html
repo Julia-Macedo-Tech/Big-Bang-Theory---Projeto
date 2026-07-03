@@ -23,7 +23,7 @@
 
 <!-- onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()" -->
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), onloadEsconder()">
 
     <div class="janela">
 
@@ -67,6 +67,61 @@
         <div class="dash">
             <div class="dash-container">
 
+                <div id="pontuacaoEJogo">
+                    <P>Iniciar quiz</P>
+                    <button id="btnIniciarQuizFacil" onclick="iniciarQuiz('Fácil')">TIPO FÁCIL</button>
+                    <button id="btnIniciarQuizMedio" onclick="iniciarQuiz('Médio')">TIPO MÉDIO</button>
+                    <button id="btnIniciarQuizDificil" onclick="iniciarQuiz('Difícil')">TIPO DIFÍCIL</button>
+
+                    <div id="jogoQuiz" class="width-fit-content flex-colunar border-secondary">
+
+                        <div id="infoQuestao" class="padding-8">
+                            <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span
+                                    id="qtdQuestoes"></span>
+                                questões.</span>
+                        </div>
+
+                        <div id="perguntaDaQuestaoAtual" class="padding-8">
+                            <span id="spanQuestaoExibida" class="text-bold"></span>
+                        </div>
+
+                        <div id="infoAlternativas" class="padding-8">
+                            <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                        </div>
+
+                        <div id="opcoes" class="flex-colunar padding-8">
+                            <span>
+                                <input type="radio" id="primeiraOpcao" name="option" class="radio"
+                                    value="alternativaA" />
+                                <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="segundaOpcao" name="option" class="radio"
+                                    value="alternativaB" />
+                                <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="terceiraOpcao" name="option" class="radio"
+                                    value="alternativaC" />
+                                <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                                <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                            </span>
+                        </div>
+
+                        <div id="botoes" class="flex-colunar padding-8">
+                            <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                            <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                            <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                            <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar
+                                novamente</button>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -75,7 +130,7 @@
 
 </body>
 
-<script>
+<!-- <script>
 
     function exibirAquarios() {
         JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
@@ -93,6 +148,639 @@
                     </div>
                     `
         });
+    }
+
+</script> -->
+
+<script>
+
+    const listaDeQuestoesFacil = [
+        {
+            "pergunta": "Em qual universidade a maioria dos personagens masculinos trabalha?",
+            "alternativaA": "MIT",
+            "alternativaB": "Stanford",
+            "alternativaC": "Caltech",
+            "alternativaD": "Harvard",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual destes personagens é um engenheiro e, por muito tempo, foi o único do grupo sem um doutorado?",
+            "alternativaA": "Leonard Hofstadter",
+            "alternativaB": "Sheldon Cooper",
+            "alternativaC": "Rajesh Koothrappali",
+            "alternativaD": "Howard Wolowitz",
+            "alternativaCorreta": "alternativaD",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é a música que Sheldon pede para Penny cantar quando ele está doente?",
+            "alternativaA": "Soft Kitty",
+            "alternativaB": "Little Cat",
+            "alternativaC": "Sleepy Tiger",
+            "alternativaD": "Warm Kitty",
+            "alternativaCorreta": "alternativaA",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é o número do apartamento de Leonard e Sheldon?",
+            "alternativaA": "3A",
+            "alternativaB": "4A",
+            "alternativaC": "4B",
+            "alternativaD": "5A",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Quantas temporadas a série The Big Bang Theory teve no total?",
+            "alternativaA": "10",
+            "alternativaB": "11",
+            "alternativaC": "12",
+            "alternativaD": "13",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Quantos números ímpares existem entre 10 e 30?",
+            "alternativaA": "9",
+            "alternativaB": "10",
+            "alternativaC": "11",
+            "alternativaD": "12",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Qual o resultado de √144 + √64?",
+            "alternativaA": "18",
+            "alternativaB": "20",
+            "alternativaC": "22",
+            "alternativaD": "24",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Em um grupo de 50 pessoas, 60% gostam de futebol. Quantas NÃO gostam?",
+            "alternativaA": "15",
+            "alternativaB": "20",
+            "alternativaC": "25",
+            "alternativaD": "30",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Qual o valor da expressão (10 - 2 * 3)^2?",
+            "alternativaA": "16",
+            "alternativaB": "25",
+            "alternativaC": "36",
+            "alternativaD": "64",
+            "alternativaCorreta": "alternativaA",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Um ângulo suplementar a 70° mede quanto?",
+            "alternativaA": "20°",
+            "alternativaB": "90°",
+            "alternativaC": "110°",
+            "alternativaD": "180°",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Matemática"
+        }
+    ];
+
+    const listaDeQuestoesMedia = [
+        {
+            "pergunta": "Qual é o estado de origem de Penny?",
+            "alternativaA": "Kansas",
+            "alternativaB": "Nebraska",
+            "alternativaC": "Iowa",
+            "alternativaD": "Oklahoma",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é a profissão de Bernadette Rostenkowski-Wolowitz?",
+            "alternativaA": "Neurobiologista",
+            "alternativaB": "Microbiologista",
+            "alternativaC": "Física experimental",
+            "alternativaD": "Astrônoma",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é o apelido de astronauta que Howard recebeu no espaço?",
+            "alternativaA": "Rocket Man",
+            "alternativaB": "Froot Loops",
+            "alternativaC": "Iron Man",
+            "alternativaD": "Space Cowboy",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é o nome do programa de internet que Sheldon e Amy apresentam juntos?",
+            "alternativaA": "Science with Sheldon",
+            "alternativaB": "Fun with Physics",
+            "alternativaC": "Dr. Sheldon Cooper's Fun with Flags",
+            "alternativaD": "The Vexillology Show",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual prêmio Sheldon e Amy ganham juntos no final da série?",
+            "alternativaA": "Medalha Fields",
+            "alternativaB": "Prêmio Nobel de Física",
+            "alternativaC": "Prêmio Breakthrough",
+            "alternativaD": "Prêmio Wolf",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Se 3 elevado a x é igual a 81 (3^x = 81), qual o valor de x?",
+            "alternativaA": "2",
+            "alternativaB": "3",
+            "alternativaC": "4",
+            "alternativaD": "5",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Em uma urna há 5 bolas azuis e 3 vermelhas. Qual a chance de tirar uma vermelha?",
+            "alternativaA": "3/5",
+            "alternativaB": "5/8",
+            "alternativaC": "3/8",
+            "alternativaD": "1/2",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Um triângulo retângulo tem catetos de 6cm e 8cm. Qual a hipotenusa?",
+            "alternativaA": "9 cm",
+            "alternativaB": "10 cm",
+            "alternativaC": "12 cm",
+            "alternativaD": "14 cm",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Qual a média aritmética dos números 12, 15, 18 e 27?",
+            "alternativaA": "16",
+            "alternativaB": "17",
+            "alternativaC": "18",
+            "alternativaD": "20",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Se 4 máquinas produzem 800 peças, quantas 6 máquinas produzirão?",
+            "alternativaA": "1000",
+            "alternativaB": "1200",
+            "alternativaC": "1400",
+            "alternativaD": "1600",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        }
+    ];
+
+    const listaDeQuestoesDificil = [
+        {
+            "pergunta": "Qual é o nome do meio de Sheldon Cooper?",
+            "alternativaA": "Lee",
+            "alternativaB": "Lyndon",
+            "alternativaC": "Leonard",
+            "alternativaD": "Lester",
+            "alternativaCorreta": "alternativaA",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Por que o elevador do prédio dos personagens ficou quebrado por quase toda a série?",
+            "alternativaA": "Desgaste natural",
+            "alternativaB": "Experimento de Howard com um foguete",
+            "alternativaC": "Experimento de Leonard com combustível de foguete",
+            "alternativaD": "Sheldon testando a gravidade",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "O Contrato de Colegas de Quarto diz que, se um ganhar superpoderes, deve nomear o outro como:",
+            "alternativaA": "Inimigo",
+            "alternativaB": "Mestre",
+            "alternativaC": "Ajudante (sidekick)",
+            "alternativaD": "Suplente",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é a comida que o grupo come às quintas-feiras no cronograma de Sheldon?",
+            "alternativaA": "Comida Chinesa",
+            "alternativaB": "Noite da Pizza",
+            "alternativaC": "Comida Tailandesa",
+            "alternativaD": "Noite do Hambúrguer",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Qual é o nome do jogo de cartas colecionáveis fictício que os rapazes jogam?",
+            "alternativaA": "Magic: The Gathering",
+            "alternativaB": "Mystic Warlords of Ka'a",
+            "alternativaC": "Dungeons & Dragons",
+            "alternativaD": "World of Warcraft",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Série"
+        },
+        {
+            "pergunta": "Se a soma de dois números é 45 e a diferença entre eles é 9, qual é o maior?",
+            "alternativaA": "18",
+            "alternativaB": "23",
+            "alternativaC": "27",
+            "alternativaD": "36",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Um produto com 20% de desconto custa R$ 80,00. Qual era o valor original?",
+            "alternativaA": "R$ 96,00",
+            "alternativaB": "R$ 100,00",
+            "alternativaC": "R$ 110,00",
+            "alternativaD": "R$ 120,00",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Resolva a equação: 2x + 7 = 3x - 5. Qual o valor de x?",
+            "alternativaA": "5",
+            "alternativaB": "7",
+            "alternativaC": "10",
+            "alternativaD": "12",
+            "alternativaCorreta": "alternativaD",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Qual a área de um círculo com raio de 3m? (Considere pi = 3,14)",
+            "alternativaA": "9,42 m²",
+            "alternativaB": "18,84 m²",
+            "alternativaC": "28,26 m²",
+            "alternativaD": "31,40 m²",
+            "alternativaCorreta": "alternativaC",
+            "tipo": "Matemática"
+        },
+        {
+            "pergunta": "Juros simples: R$ 1.000 a 2% ao mês. Qual o total após 3 meses?",
+            "alternativaA": "R$ 1.040,00",
+            "alternativaB": "R$ 1.060,00",
+            "alternativaC": "R$ 1.080,00",
+            "alternativaD": "R$ 1.100,00",
+            "alternativaCorreta": "alternativaB",
+            "tipo": "Matemática"
+        }
+    ];
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certasSerie = 0
+    let certasMatematica = 0
+    let erradas = 0
+    let quantidadeDeQuestoesFacil = listaDeQuestoesFacil.length
+    let quantidadeDeQuestoesMedio = listaDeQuestoesMedia.length
+    let quantidadeDeQuestoesDificil = listaDeQuestoesDificil.length
+    let tipoNivel = "";
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    function onloadEsconder() {
+        document.getElementById('jogoQuiz').style.display = "none"
+    }
+
+    function iniciarQuiz(tipo) {
+        document.getElementById('jogoQuiz').style.display = "flex"
+        document.getElementById('btnIniciarQuizFacil').style.display = "none"
+        document.getElementById('btnIniciarQuizFacil').style.display = "none"
+        document.getElementById('btnIniciarQuizMedio').style.display = "none"
+        document.getElementById('btnIniciarQuizDificil').style.display = "none"
+
+        tipoNivel = tipo;
+
+        if (tipoNivel == "Fácil") {
+            document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoesFacil;
+        } else if (tipoNivel == "Médio") {
+            document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoesMedio;
+        } else {
+            document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoesDificil;
+        }
+
+        embaralhar();
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function embaralhar() {
+        if (tipoNivel == "Fácil") {
+            let numero = 0;
+            for (let linha = listaDeQuestoesFacil.length - 1; linha >= 0; linha--) {
+                console.log(listaDeQuestoesFacil[linha]);
+                numero = Math.floor(Math.random() * linha);
+                let troca = [];
+
+                troca.push(listaDeQuestoesFacil[linha]);
+                listaDeQuestoesFacil[linha] = listaDeQuestoesFacil[numero];
+                listaDeQuestoesFacil[numero] = troca.pop();
+            }
+            preencherHTMLcomQuestaoAtual(0)
+
+        } else if (tipoNivel == "média") {
+            let numero = 0;
+            for (let linha = listaDeQuestoesMedia.length - 1; linha >= 0; linha--) {
+                console.log(listaDeQuestoesMedia[linha]);
+                numero = Math.floor(Math.random() * linha);
+                let troca = [];
+
+                troca.push(listaDeQuestoesMedia[linha]);
+                listaDeQuestoesMedia[linha] = listaDeQuestoesMedia[numero];
+                listaDeQuestoesMedia[numero] = troca.pop();
+            }
+            preencherHTMLcomQuestaoAtual(0)
+
+        } else {
+            let numero = 0;
+            for (let linha = listaDeQuestoesDificil.length - 1; linha >= 0; linha--) {
+                console.log(listaDeQuestoesDificil[linha]);
+                numero = Math.floor(Math.random() * linha);
+                let troca = [];
+
+                troca.push(listaDeQuestoesDificil[linha]);
+                listaDeQuestoesDificil[linha] = listaDeQuestoesDificil[numero];
+                listaDeQuestoesDificil[numero] = troca.pop();
+            }
+            preencherHTMLcomQuestaoAtual(0)
+        }
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        if (tipoNivel == "Fácil") {
+            habilitarAlternativas(true)
+            const questaoAtual = listaDeQuestoesFacil[index]
+            numeroDaQuestaoAtual = index
+            console.log("questaoAtual")
+            console.log(questaoAtual)
+            document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+            document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+            document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+            document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+            document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+            document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+        } else if (tipoNivel == "Médio") {
+            habilitarAlternativas(true)
+            const questaoAtual = listaDeQuestoesMedia[index]
+            numeroDaQuestaoAtual = index
+            console.log("questaoAtual")
+            console.log(questaoAtual)
+            document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+            document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+            document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+            document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+            document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+            document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+        } else {
+            habilitarAlternativas(true)
+            const questaoAtual = listaDeQuestoesDificil[index]
+            numeroDaQuestaoAtual = index
+            console.log("questaoAtual")
+            console.log(questaoAtual)
+            document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+            document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+            document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+            document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+            document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+            document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        }
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (tipoNivel == "Fácil") {
+            if (numeroDaQuestaoAtual < quantidadeDeQuestoesFacil - 1) {
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else if (numeroDaQuestaoAtual == quantidadeDeQuestoesFacil - 1) {
+                alert("Atenção... a próxima é a ultima questão!")
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else {
+                finalizarJogo()
+            }
+        } else if (tipoNivel == "Médio") {
+            if (numeroDaQuestaoAtual < quantidadeDeQuestoesMedio - 1) {
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else if (numeroDaQuestaoAtual == quantidadeDeQuestoesMedio - 1) {
+                alert("Atenção... a próxima é a ultima questão!")
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else {
+                finalizarJogo()
+            }
+        } else {
+            if (numeroDaQuestaoAtual < quantidadeDeQuestoesDificil - 1) {
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else if (numeroDaQuestaoAtual == quantidadeDeQuestoesDificil - 1) {
+                alert("Atenção... a próxima é a ultima questão!")
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else {
+                finalizarJogo()
+            }
+        }
+
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        if (tipoNivel == "Fácil") {
+            const questaoAtual = listaDeQuestoesFacil[numeroDaQuestaoAtual] // questão atual 
+            const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+            const options = document.getElementsByName("option"); // recupera alternativas no html
+
+            let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+            options.forEach((option) => {
+                if (option.value === respostaQuestaoAtual) {
+                    console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                    alternativaCorreta = option.labels[0].id
+                }
+            })
+
+            // verifica se resposta assinalada é correta
+            options.forEach((option) => {
+                if (option.checked === true && option.value === respostaQuestaoAtual) {
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    pontuacaoFinal++
+                    if (listaDeQuestoesFacil[numeroDaQuestaoAtual]["tipo"] == "Série") {
+                        certasSerie++
+                    } else if (listaDeQuestoesFacil[numeroDaQuestaoAtual]["tipo"] == "Matemática") {
+                        certasMatematica++
+                    }
+                    numeroDaQuestaoAtual++
+
+                } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                    const wrongLabelId = option.labels[0].id
+                    document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    tentativaIncorreta++
+                    erradas++
+                    numeroDaQuestaoAtual++
+                }
+            })
+        } else if (tipoNivel == "Médio") {
+            const questaoAtual = listaDeQuestoesMedia[numeroDaQuestaoAtual] // questão atual 
+            const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+            const options = document.getElementsByName("option"); // recupera alternativas no html
+
+            let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+            options.forEach((option) => {
+                if (option.value === respostaQuestaoAtual) {
+                    console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                    alternativaCorreta = option.labels[0].id
+                }
+            })
+
+            // verifica se resposta assinalada é correta
+            options.forEach((option) => {
+                if (option.checked === true && option.value === respostaQuestaoAtual) {
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    pontuacaoFinal++
+                    if (listaDeQuestoesMedia[numeroDaQuestaoAtual]["tipo"] == "Série") {
+                        certasSerie++
+                    } else if (listaDeQuestoesMedia[numeroDaQuestaoAtual]["tipo"] == "Matemática") {
+                        certasMatematica++
+                    }
+                    numeroDaQuestaoAtual++
+
+                } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                    const wrongLabelId = option.labels[0].id
+                    document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    tentativaIncorreta++
+                    erradas++
+                    numeroDaQuestaoAtual++
+                }
+            })
+        } else {
+            const questaoAtual = listaDeQuestoesDificil[numeroDaQuestaoAtual] // questão atual 
+            const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+            const options = document.getElementsByName("option"); // recupera alternativas no html
+
+            let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+            options.forEach((option) => {
+                if (option.value === respostaQuestaoAtual) {
+                    console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                    alternativaCorreta = option.labels[0].id
+                }
+            })
+
+            // verifica se resposta assinalada é correta
+            options.forEach((option) => {
+                if (option.checked === true && option.value === respostaQuestaoAtual) {
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    pontuacaoFinal++
+                    if (listaDeQuestoesDificil[numeroDaQuestaoAtual]["tipo"] == "Série") {
+                        certasSerie++
+                    } else if (listaDeQuestoesDificil[numeroDaQuestaoAtual]["tipo"] == "Matemática") {
+                        certasMatematica++
+                    }
+                    numeroDaQuestaoAtual++
+
+                } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                    const wrongLabelId = option.labels[0].id
+                    document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    tentativaIncorreta++
+                    erradas++
+                    numeroDaQuestaoAtual++
+                }
+            })
+        }
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        let fkusuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/quiz/cadastroQuiz/${tipoNivel}/${certasMatematica}/${certasSerie}/${fkusuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                console.log("Puzzle cadastrado")
+
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
+            });
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
     }
 
 </script>
