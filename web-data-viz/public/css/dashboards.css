@@ -738,3 +738,10 @@ canvas {
     font-size: 20px;
   }
 }
+
+#escolhaQuiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
