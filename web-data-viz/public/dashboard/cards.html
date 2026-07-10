@@ -69,7 +69,8 @@
 
                 <div id="pontuacaoEJogo">
                     <div id="escolhaQuiz">
-                        <P>Iniciar quiz</P>
+                        <p class="tituloQuiz">Você conhece mais sobre matemática ou sobre a série Big Bang Theory?</p>
+                        <P class="iniciarQuiz">Iniciar quiz</P>
                         <button id="btnIniciarQuizFacil" onclick="iniciarQuiz('Fácil')">TIPO FÁCIL</button>
                         <button id="btnIniciarQuizMedio" onclick="iniciarQuiz('Médio')">TIPO MÉDIO</button>
                         <button id="btnIniciarQuizDificil" onclick="iniciarQuiz('Difícil')">TIPO DIFÍCIL</button>
@@ -85,10 +86,6 @@
 
                         <div id="perguntaDaQuestaoAtual" class="padding-8">
                             <span id="spanQuestaoExibida" class="text-bold"></span>
-                        </div>
-
-                        <div id="infoAlternativas" class="padding-8">
-                            <span><em>Escolha uma opção dentre as abaixo:</em></span>
                         </div>
 
                         <div id="opcoes" class="flex-colunar padding-8">
@@ -111,6 +108,10 @@
                                 <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
                                 <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
                             </span>
+                        </div>
+
+                        <div id="mensagemFinal">
+                            <p>Veja o resultado na dashboard ou tente novamente!</p>
                         </div>
 
                         <div id="botoes" class="flex-colunar padding-8">
@@ -450,14 +451,12 @@
 
     function onloadEsconder() {
         document.getElementById('jogoQuiz').style.display = "none"
+        document.getElementById('mensagemFinal').style.display = "none"
     }
 
     function iniciarQuiz(tipo) {
         document.getElementById('jogoQuiz').style.display = "flex"
-        document.getElementById('btnIniciarQuizFacil').style.display = "none"
-        document.getElementById('btnIniciarQuizFacil').style.display = "none"
-        document.getElementById('btnIniciarQuizMedio').style.display = "none"
-        document.getElementById('btnIniciarQuizDificil').style.display = "none"
+        document.getElementById('escolhaQuiz').style.display = "none"
 
         tipoNivel = tipo;
 
@@ -769,7 +768,12 @@
 
         fetch(`/quiz/cadastroQuiz/${tipoNivel}/${certasMatematica}/${certasSerie}/${fkusuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
-                console.log("Puzzle cadastrado")
+                console.log("Quiz cadastrado")
+
+                document.getElementById('perguntaDaQuestaoAtual').style.display = "none"
+                document.getElementById('opcoes').style.display = "none"
+                document.getElementById('mensagemFinal').style.display = "flex"
+
 
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');

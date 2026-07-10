@@ -12,12 +12,8 @@ use big_bang;
 create table usuario (
 id_usuario int primary key auto_increment,
 nome varchar(100) unique not null,
-senha varchar(100) not null);
-
-insert into usuario(nome, senha) value
-("julia sa", "julia2122");
-
-select * from usuario;
+senha varchar(100) not null,
+foto_usuario int not null default 0);
 
 create table jogo_luta (
 id_jogo_luta int primary key auto_increment,
@@ -35,8 +31,13 @@ foreign key(fk_usuario) references usuario(id_usuario));
 
 create table quiz (
 id_quiz int primary key auto_increment,
+tipo varchar(20) not null,
 pontuacao_matematica int not null,
 pontuacao_serie int not null,
 cadastrado_em DATETIME DEFAULT CURRENT_TIMESTAMP(),
 fk_usuario int, 
 foreign key(fk_usuario) references usuario(id_usuario));
+
+create view vw_login
+as
+SELECT id_usuario, nome, foto_usuario, senha FROM usuario;

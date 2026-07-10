@@ -744,4 +744,184 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 80%;
+}
+
+.tituloQuiz {
+  font-size: 40px !important;
+  font-family: "Bazinga italic";
+  text-align: center;
+}
+
+.iniciarQuiz {
+  font-size: 22px !important;
+}
+
+#pontuacaoEJogo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btnIniciarQuizFacil {
+  background-color: #4cc659;
+  width: 40%;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  color: #1d1d1d;
+}
+
+#btnIniciarQuizMedio {
+  background-color: #ffbd59;
+  width: 40%;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  color: #1d1d1d;
+}
+
+#btnIniciarQuizDificil {
+  background-color: #d5312c;
+  width: 40%;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  color: #1d1d1d;
+}
+
+#jogoQuiz {
+  background-color: #1a1a2ee2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 40%;
+  height: 90%;
+  border-radius: 10px;
+
+  button {
+    background-color: #ffd600;
+    border: none;
+    border-radius: 7px;
+    width: 90%;
+    padding: 10px 0px;
+  }
+}
+
+#infoQuestao {
+  font-family: "Open Sans";
+  background-color: #ffd5008d;
+  color: #ffd600;
+  width: 90%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#perguntaDaQuestaoAtual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+
+  span {
+    font-size: 18px;
+  }
+}
+
+#opcoes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  span {
+    width: 90%;
+    background-color: #1a1a2e;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 8px 0px;
+    border-radius: 10px;
+  }
+
+  span input {
+    width: 100%;
+    padding: 8px 0px;
+    margin-left: -160px;
+  }
+
+  span label {
+    width: 100%;
+    padding: 8px 0px;
+    margin-left: -185px;
+  }
+}
+
+#botoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  button {
+    margin-bottom: 10px;
+    font-family: "Bazinga";
+  }
+}
+
+#mensagemFinal {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+#escolhaCartas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .carta {
+    width: 20%;
+    cursor: pointer;
+  }
+  img {
+    width: 100%;
+  }
+  .comecar {
+    width: 100px;
+    height: 50px;
+    background-color: #4cc659;
+  }
+  .limpar {
+    width: 100px;
+    height: 50px;
+    background-color: #d5312c;
+  }
+  .div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 }
