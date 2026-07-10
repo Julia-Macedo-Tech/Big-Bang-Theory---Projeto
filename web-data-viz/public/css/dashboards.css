@@ -592,6 +592,8 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .esolha-texto {
     margin-bottom: -50px;
@@ -900,28 +902,54 @@ canvas {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 450px;
 
   .carta {
-    width: 20%;
+    width: 23%;
     cursor: pointer;
   }
+
   img {
     width: 100%;
   }
+
   .comecar {
-    width: 100px;
+    width: 150px;
     height: 50px;
     background-color: #4cc659;
+    font-family: "Bazinga";
   }
+
   .limpar {
-    width: 100px;
+    width: 150px;
     height: 50px;
     background-color: #d5312c;
+    font-family: "Bazinga";
   }
+
   .div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 90%;
+    margin-bottom: 120px;
   }
+  .botoesEscolha {
+    margin-bottom: 30px;
+  }
+}
+
+.jogo::-webkit-scrollbar {
+  width: 4px;
+}
+
+.jogo::-webkit-scrollbar-track {
+  background-color: #ffd600;
+  border-radius: 2px;
+}
+
+.jogo::-webkit-scrollbar-thumb {
+  background-color: #1a1a2e;
+  border-radius: 2px;
 }
