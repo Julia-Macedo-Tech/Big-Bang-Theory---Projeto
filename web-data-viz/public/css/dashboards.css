@@ -902,29 +902,41 @@ canvas {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 450px;
+  margin-top: 520px;
 
   .carta {
-    width: 23%;
+    width: 25%;
+    height: 51%;
     cursor: pointer;
+    border-radius: 10px;
+    margin-top: 15px;
   }
 
   img {
     width: 100%;
+    border-radius: 10px;
   }
 
   .comecar {
-    width: 150px;
+    width: 170px;
     height: 50px;
     background-color: #4cc659;
     font-family: "Bazinga";
+    font-size: 17px;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
   }
 
   .limpar {
-    width: 150px;
+    width: 170px;
     height: 50px;
     background-color: #d5312c;
     font-family: "Bazinga";
+    font-size: 17px;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
   }
 
   .div {
@@ -933,7 +945,7 @@ canvas {
     align-items: center;
     flex-wrap: wrap;
     width: 90%;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
   }
   .botoesEscolha {
     margin-bottom: 30px;
@@ -952,4 +964,49 @@ canvas {
 .jogo::-webkit-scrollbar-thumb {
   background-color: #1a1a2e;
   border-radius: 2px;
+}
+
+.escolhida {
+  border: 4px #4cc659 solid !important;
+}
+
+#jogoComecar {
+  p {
+    text-align: center;
+    font-size: 25px;
+    margin-top: -4px;
+  }
+  button {
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    border: 2px #ffd600 solid;
+    border-radius: 7px;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.vs_img {
+  width: 120px !important;
+  position: absolute;
+  margin-left: 500px;
+  margin-top: 30px;
+}
+
+.mostrar {
+  margin-bottom: 350px;
+  margin-top: 70px;
+
+  .escolhida_pessoa {
+    position: absolute;
+    width: 220px !important; 
+    margin-left: 230px;
+  }
+  .escolhida_maquina {
+    position: absolute;
+    width: 220px !important; 
+    margin-left: 680px;
+  }
 }

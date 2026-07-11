@@ -100,20 +100,41 @@
                     <button class="diferente" id="b9"></button>
                 </div> -->
 
-                <div id="escolhaCartas">
+                <!-- <div id="escolhaCartas">
                     <p>Escolha 2 cartas</p>
                     <div class="div">
-                        <button class="carta"><img src="../assets/imgs/pedra.png" alt=""></button>
-                        <button class="carta"><img src="../assets/imgs/papel.png" alt=""></button>
-                        <button class="carta"><img src="../assets/imgs/tesoura.png" alt=""></button>
-                        <button class="carta"><img src="../assets/imgs/lagarto.png" alt=""></button>
-                        <button class="carta"><img src="../assets/imgs/spock.png" alt=""></button>
+                        <button class="carta" onclick="escolhaCarta('pedra')" id="pedra"><img
+                                src="../assets/imgs/pedra.png" alt=""></button>
+                        <button class="carta" onclick="escolhaCarta('papel')" id="papel"><img
+                                src="../assets/imgs/papel.png" alt=""></button>
+                        <button class="carta" onclick="escolhaCarta('tesoura')" id="tesoura"><img
+                                src="../assets/imgs/tesoura.png" alt=""></button>
+                        <button class="carta" onclick="escolhaCarta('lagarto')" id="lagarto"><img
+                                src="../assets/imgs/lagarto.png" alt=""></button>
+                        <button class="carta" onclick="escolhaCarta('spock')" id="spock"><img
+                                src="../assets/imgs/spock.png" alt=""></button>
                     </div>
 
                     <div class="botoesEscolha">
                         <button class="comecar">Começar o jogo</button>
-                        <button class="limpar">Limpar escolhas</button>
+                        <button class="limpar" onclick="limpar()">Limpar escolhas</button>
                     </div>
+                </div> -->
+
+                <div id="jogoComecar">
+                    <p>Jogue pedra, papel, tesoura, lagarto e spock clássico e descubra quem começará o jogo! 
+                        <p>Você ou a máquina</p>
+                    </p>
+                    <div class="mostrar">
+                        <img class="escolhida_pessoa" src="../assets/imgs/pedra_img.png" alt="">
+                        <img class="vs_img" src="../assets/imgs/vs.png" alt="">
+                        <img class="escolhida_maquina" src="../assets/imgs/lagarto_img.png" alt="">
+                    </div>
+                    <button><img src="../assets/imgs/pedra_img.png" alt=""></button>
+                    <button><img src="../assets/imgs/papel_img.png" alt=""></button>
+                    <button><img src="../assets/imgs/tesoura_img.png" alt=""></button>
+                    <button><img src="../assets/imgs/lagarto_img.png" alt=""></button>
+                    <button><img src="../assets/imgs/spock_img.png" alt=""></button>
                 </div>
 
             </div>
@@ -127,286 +148,328 @@
 
 <script>
 
-    let posicao_certa = [
-        ["b1", "b2", "b3"],
-        ["b4", "b5", "b6"],
-        ["b7", "b8", "b9"]
-    ];
+    // let posicao_certa = [
+    //     ["b1", "b2", "b3"],
+    //     ["b4", "b5", "b6"],
+    //     ["b7", "b8", "b9"]
+    // ];
 
-    let posicao = [
-        ["b1", "b2", "b3"],
-        ["b4", "b5", "b6"],
-        ["b7", "b8", "b9"]
-    ];
+    // let posicao = [
+    //     ["b1", "b2", "b3"],
+    //     ["b4", "b5", "b6"],
+    //     ["b7", "b8", "b9"]
+    // ];
 
-    let movimentos_numero = 0;
+    // let movimentos_numero = 0;
 
-    window.onload = embaralhar(), validarSessao(), onloadEsconder();
+    // window.onload = embaralhar(), validarSessao(), onloadEsconder();
 
-    function onloadEsconder() {
-        document.getElementById('quantidade').style.display = "none";
-        document.getElementById('container_puzzle').style.display = "none";
-    }
+    // function onloadEsconder() {
+    //     document.getElementById('quantidade').style.display = "none";
+    //     document.getElementById('container_puzzle').style.display = "none";
+    // }
 
-    function comecar_jogo_puzzle() {
-        document.getElementById('quantidade').style.display = "flex";
-        document.getElementById('container_puzzle').style.display = "flex";
-        document.getElementById('esolha-texto').style.display = "none";
-        document.getElementById('jogo-div').style.display = "none";
-    }
+    // function comecar_jogo_puzzle() {
+    //     document.getElementById('quantidade').style.display = "flex";
+    //     document.getElementById('container_puzzle').style.display = "flex";
+    //     document.getElementById('esolha-texto').style.display = "none";
+    //     document.getElementById('jogo-div').style.display = "none";
+    // }
 
-    function movimentos(posi) {
-        let lugar_linha = null;
-        let lugar_coluna = null;
+    // function movimentos(posi) {
+    //     let lugar_linha = null;
+    //     let lugar_coluna = null;
 
-        for (let linha = 0; linha < posicao.length; linha++) {
-            console.log(posicao[linha]);
+    //     for (let linha = 0; linha < posicao.length; linha++) {
+    //         console.log(posicao[linha]);
 
-            for (let coluna = 0; coluna < posicao[linha].length; coluna++) {
-                console.log(posicao[linha][coluna]);
+    //         for (let coluna = 0; coluna < posicao[linha].length; coluna++) {
+    //             console.log(posicao[linha][coluna]);
 
-                if (posi == posicao[linha][coluna]) {
-                    lugar_linha = linha;
-                    lugar_coluna = coluna;
-                    break;
-                }
-            }
-        }
+    //             if (posi == posicao[linha][coluna]) {
+    //                 lugar_linha = linha;
+    //                 lugar_coluna = coluna;
+    //                 break;
+    //             }
+    //         }
+    //     }
 
-        if (lugar_linha == 2) {
-            if (lugar_coluna == 2) {
-                if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha - 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
+    //     if (lugar_linha == 2) {
+    //         if (lugar_coluna == 2) {
+    //             if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha - 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
 
-                } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna - 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
+    //             } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna - 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
 
-            } else if (lugar_coluna == 1) {
-                if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha - 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
+    //         } else if (lugar_coluna == 1) {
+    //             if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha - 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
 
-                } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna - 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
+    //             } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna - 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
 
-                } else if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna + 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
+    //             } else if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna + 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+
+    //         } else {
+    //             if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha - 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna + 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+    //         }
+
+    //     } else if (lugar_linha == 1) {
+    //         if (lugar_coluna == 2) {
+    //             if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna - 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha + 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha - 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+
+    //         } else if (lugar_coluna == 1) {
+    //             if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna + 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna - 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha + 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha - 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+
+    //         } else {
+    //             if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna + 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha + 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha - 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+    //         }
+
+    //     } else {
+    //         if (lugar_coluna == 2) {
+    //             if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna - 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha + 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+
+    //         } else if (lugar_coluna == 1) {
+    //             if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna + 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna - 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha + 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+    //             }
+
+    //         } else {
+    //             if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
+    //                 posicao[lugar_linha][lugar_coluna + 1] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
+    //                 posicao[lugar_linha + 1][lugar_coluna] = posi;
+    //                 posicao[lugar_linha][lugar_coluna] = "b9";
+    //                 movimentos_numero++;
+
+    //             }
+    //         }
+    //     }
+
+    //     preencherPuzzle();
+
+    // }
+
+    // function embaralhar() {
+    //     let numero = 0;
+    //     movimentos_numero = 0;
+
+    //     movimentos_div.innerHTML = `<span class="material-symbols-outlined">Footprint</span>${movimentos_numero}`;
+
+    //     for (let linha = posicao.length - 1; linha >= 0; linha--) {
+
+    //         for (let coluna = posicao[linha].length - 1; coluna >= 0; coluna--) {
+    //             console.log(posicao[linha][coluna]);
+    //             let numero = Math.floor(Math.random() * (linha));
+    //             let numero2 = Math.floor(Math.random() * (coluna));
+    //             let troca = [];
+    //             troca.push(posicao[linha][coluna]);
+    //             posicao[linha][coluna] = posicao[numero][numero2];
+    //             posicao[numero][numero2] = troca.pop();
+    //         }
+    //     }
+
+    //     preencherPuzzle();
+
+    // }
+
+    // function preencherPuzzle() {
+    //     container_puzzle.innerHTML = ``;
+    //     movimentos_div.innerHTML = `<span class="material-symbols-outlined">Footprint</span>${movimentos_numero}`;
+
+
+    //     for (let linha = 0; linha < posicao.length; linha++) {
+    //         console.log(posicao[linha]);
+
+    //         for (let coluna = 0; coluna < posicao[linha].length; coluna++) {
+    //             console.log(posicao[linha][coluna]);
+    //             if (posicao[linha][coluna] == "b9") {
+    //                 container_puzzle.innerHTML += `<button class="diferente" id="b9" onclick="movimentos('b9')"></button>`;
+
+    //             } else {
+    //                 container_puzzle.innerHTML += `<button class="igual" id="${posicao[linha][coluna]}" onclick="movimentos('${posicao[linha][coluna]}')"></button>`;
+    //             }
+    //         }
+    //     }
+
+    //     verificar();
+    // }
+
+    // let idusuario = sessionStorage.ID_USUARIO;
+
+    // function verificar() {
+    //     let soma = 0;
+
+    //     for (let linha = 0; linha < posicao.length; linha++) {
+    //         console.log(posicao[linha]);
+
+    //         for (let coluna = 0; coluna < posicao[linha].length; coluna++) {
+    //             console.log(posicao[linha][coluna]);
+
+    //             if (posicao[linha][coluna] == posicao_certa[linha][coluna]) {
+    //                 soma++;
+    //             }
+
+    //         }
+    //     }
+
+    //     if (soma == 9) {
+    //         fetch(`/jogos/cadastroPuzzle/${movimentos_numero}/${idusuario}`, { cache: 'no-store' }).then(function (response) {
+    //             if (response.ok) {
+    //                 console.log("Puzzle cadastrado")
+
+    //             } else {
+    //                 console.error('Nenhum dado encontrado ou erro na API');
+    //             }
+    //         })
+    //             .catch(function (error) {
+    //                 console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
+    //             });
+
+    //         setTimeout(() => {
+    //             alert("Você ganhou, parabéns!")
+    //         }, 2000);
+
+    //     } else {
+
+    //     }
+    // }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    let n_cartas = 0;
+    let carta1 = null;
+    let carta2 = null;
+
+    function escolhaCarta(carta) {
+        if (n_cartas == 0) {
+            carta1 = carta;
+            n_cartas++;
+            document.getElementById(carta).classList.add("escolhida")
+
+        } else if (n_cartas == 1) {
+            if (carta1 == carta) {
+                alert("Você já escolheu essa carta.")
 
             } else {
-                if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha - 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna + 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
-            }
-
-        } else if (lugar_linha == 1) {
-            if (lugar_coluna == 2) {
-                if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna - 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha + 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha - 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
-
-            } else if (lugar_coluna == 1) {
-                if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna + 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna - 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha + 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha - 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
-
-            } else {
-                if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna + 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha + 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha - 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha - 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
+                carta2 = carta;
+                n_cartas++;
+                document.getElementById(carta).classList.add("escolhida")
             }
 
         } else {
-            if (lugar_coluna == 2) {
-                if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna - 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha + 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
-
-            } else if (lugar_coluna == 1) {
-                if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna + 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha][lugar_coluna - 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna - 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha + 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-                }
-
-            } else {
-                if (posicao[lugar_linha][lugar_coluna + 1] == "b9") {
-                    posicao[lugar_linha][lugar_coluna + 1] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                } else if (posicao[lugar_linha + 1][lugar_coluna] == "b9") {
-                    posicao[lugar_linha + 1][lugar_coluna] = posi;
-                    posicao[lugar_linha][lugar_coluna] = "b9";
-                    movimentos_numero++;
-
-                }
-            }
-        }
-
-        preencherPuzzle();
-
-    }
-
-    function embaralhar() {
-        let numero = 0;
-        movimentos_numero = 0;
-
-        movimentos_div.innerHTML = `<span class="material-symbols-outlined">Footprint</span>${movimentos_numero}`;
-
-        for (let linha = posicao.length - 1; linha >= 0; linha--) {
-
-            for (let coluna = posicao[linha].length - 1; coluna >= 0; coluna--) {
-                console.log(posicao[linha][coluna]);
-                let numero = Math.floor(Math.random() * (linha));
-                let numero2 = Math.floor(Math.random() * (coluna));
-                let troca = [];
-                troca.push(posicao[linha][coluna]);
-                posicao[linha][coluna] = posicao[numero][numero2];
-                posicao[numero][numero2] = troca.pop();
-            }
-        }
-
-        preencherPuzzle();
-
-    }
-
-    function preencherPuzzle() {
-        container_puzzle.innerHTML = ``;
-        movimentos_div.innerHTML = `<span class="material-symbols-outlined">Footprint</span>${movimentos_numero}`;
-
-
-        for (let linha = 0; linha < posicao.length; linha++) {
-            console.log(posicao[linha]);
-
-            for (let coluna = 0; coluna < posicao[linha].length; coluna++) {
-                console.log(posicao[linha][coluna]);
-                if (posicao[linha][coluna] == "b9") {
-                    container_puzzle.innerHTML += `<button class="diferente" id="b9" onclick="movimentos('b9')"></button>`;
-
-                } else {
-                    container_puzzle.innerHTML += `<button class="igual" id="${posicao[linha][coluna]}" onclick="movimentos('${posicao[linha][coluna]}')"></button>`;
-                }
-            }
-        }
-
-        verificar();
-    }
-
-    let idusuario = sessionStorage.ID_USUARIO;
-
-    function verificar() {
-        let soma = 0;
-
-        for (let linha = 0; linha < posicao.length; linha++) {
-            console.log(posicao[linha]);
-
-            for (let coluna = 0; coluna < posicao[linha].length; coluna++) {
-                console.log(posicao[linha][coluna]);
-
-                if (posicao[linha][coluna] == posicao_certa[linha][coluna]) {
-                    soma++;
-                }
-
-            }
-        }
-
-        if (soma == 9) {
-            fetch(`/jogos/cadastroPuzzle/${movimentos_numero}/${idusuario}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    console.log("Puzzle cadastrado")
-
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
-                });
-
-            setTimeout(() => {
-                alert("Você ganhou, parabéns!")
-            }, 2000);
-
-        } else {
-
+            alert("Você já escolheu duas cartas, se quiser troca-las, aperte no botão 'Limpar escolhas'.")
         }
     }
+
+    function limpar() {
+        if (carta1 != null && carta2 != null) {
+            document.getElementById(carta1).classList.remove("escolhida")
+            document.getElementById(carta2).classList.remove("escolhida")
+
+        } else if (carta1 != null) {
+            document.getElementById(carta1).classList.remove("escolhida")
+        }
+
+        n_cartas = 0;
+        carta1 = null;
+        carta2 = null;
+    }
+
 
     // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
