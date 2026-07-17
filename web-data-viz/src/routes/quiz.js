@@ -8,4 +8,8 @@ router.get("/cadastroQuiz/:tipo/:matematica/:serie/:fkusuario", function (req, r
   quizController.cadastroQuiz(req, res);
 });
 
+router.get("/buscarQuiz/:id_usuario", function (req, res) {
+  quizController.buscarQuiz(req, res);
+});
+
 module.exports = router;

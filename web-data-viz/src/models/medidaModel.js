@@ -1,27 +1,36 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidas(idUsuario, limite_linhas, tipo) {
 
     var instrucaoSql = `SELECT 
-                        temperatura,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    FROM medida
-                    WHERE fk_aquario = ${idAquario}
-                    ORDER BY id DESC LIMIT ${limite_linhas}`;
+        pontuacao_matematica as pontuacao_matematica, 
+        pontuacao_serie as pontuacao_serie,
+        tipo,
+        (SELECT count(*) FROM quiz WHERE fk_usuario = ${idUsuario} AND tipo = "Fácil") as total_tentativas_facil,
+        (SELECT count(*) FROM quiz WHERE fk_usuario = ${idUsuario} AND tipo = "Médio") as total_tentativas_medio,
+        (SELECT count(*) FROM quiz WHERE fk_usuario = ${idUsuario} AND tipo = "Difícil") as total_tentativas_dificil,
+                        DATE_FORMAT(cadastrado_em, '%d/%m/%Y %H:%i:%s') as cadastrado_em
+                    FROM quiz
+                    WHERE fk_usuario = ${idUsuario} and tipo = '${tipo}' 
+                    ORDER BY id_quiz DESC LIMIT ${limite_linhas};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function buscarMedidasEmTempoReal(idUsuario, tipo) {
 
     var instrucaoSql = `SELECT 
-                        temperatura,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        FROM medida WHERE fk_aquario = ${idAquario} 
-                    ORDER BY id DESC LIMIT 1`;
+        pontuacao_matematica as pontuacao_matematica, 
+        pontuacao_serie as pontuacao_serie,
+        tipo,
+        (SELECT count(*) FROM quiz WHERE fk_usuario = ${idUsuario} AND tipo = "Fácil") as total_tentativas_facil,
+        (SELECT count(*) FROM quiz WHERE fk_usuario = ${idUsuario} AND tipo = "Médio") as total_tentativas_medio,
+        (SELECT count(*) FROM quiz WHERE fk_usuario = ${idUsuario} AND tipo = "Difícil") as total_tentativas_dificil,
+                        DATE_FORMAT(cadastrado_em, '%d/%m/%Y %H:%i:%s') as cadastrado_em
+                    FROM quiz
+                    WHERE fk_usuario = ${idUsuario} and tipo = '${tipo}'
+                    ORDER BY id_quiz DESC LIMIT 1;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

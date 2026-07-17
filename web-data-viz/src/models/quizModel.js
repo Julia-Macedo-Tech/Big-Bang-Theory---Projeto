@@ -6,4 +6,10 @@ function cadastroQuiz(tipo, matematica, serie, fkusuario) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { cadastroQuiz };
+function buscarQuiz(fkusuario) {
+  var instrucaoSql = `select * from quiz where fk_usuario = ${fkusuario}`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { cadastroQuiz, buscarQuiz};

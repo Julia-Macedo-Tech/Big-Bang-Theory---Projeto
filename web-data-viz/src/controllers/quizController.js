@@ -21,6 +21,24 @@ function cadastroQuiz(req, res) {
   });
 }
 
+function buscarQuiz(req, res) {
+  var fkusuario = req.params.id_usuario;
+
+  quizModel.buscarQuiz(fkusuario).then((resultado) => {
+    if (resultado.lenght > 0) {
+      res.status(200).json(resultado);
+
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao cadastrar as ultimas medidas.", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 module.exports = {
-  cadastroQuiz
+  cadastroQuiz,
+  buscarQuiz
 };

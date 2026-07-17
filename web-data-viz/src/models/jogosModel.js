@@ -8,6 +8,17 @@ function cadastroPuzzle(movimentos, fkusuario) {
     return database.executar(instrucaoSql);
 }
 
+function ranking() {
+
+    var instrucaoSql = `select nome, foto_usuario, qtd_movimentos from usuario
+join jogo_puzzle on fk_usuario = id_usuario
+order by qtd_movimentos;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    cadastroPuzzle
+    cadastroPuzzle,
+    ranking
 }

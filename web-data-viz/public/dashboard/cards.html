@@ -783,6 +783,26 @@
                 console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
             });
 
+        // let id_usuario = sessionStorage.ID_USUARIO;
+
+        // fetch(`/quiz/buscarQuiz/${id_usuario}`, { cache: 'no-store' }).then(function (response) {
+        //     if (response.ok) {
+        //         response.json().then(function (resposta) {
+        //             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        //             resposta.reverse();
+
+        //             sessionStorage.QUIZZES = resposta;
+
+        //         });
+
+        //     } else {
+        //         console.error('Nenhum dado encontrado ou erro na API');
+        //     }
+        // })
+        //     .catch(function (error) {
+        //         console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
+        //     });
+
         btnProx.disabled = true
         btnSubmeter.disabled = true
         // btnConcluir.disabled = true
