@@ -11,4 +11,12 @@ router.get("/ranking", function (req, res) {
     jogosController.ranking(req, res);
 })
 
+router.get("/vencedor/:idusuario", function (req, res) {
+    jogosController.vencedor(req, res);
+})
+
+router.get("/tabela/:idusuario", function (req, res) {
+    jogosController.tabela(req, res);
+})
+
 module.exports = router;

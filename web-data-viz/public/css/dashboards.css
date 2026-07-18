@@ -287,7 +287,7 @@ body {
 }
 
 .graph {
-  width: 70%;
+  width: 75%;
   margin: auto;
   padding-top: 10px;
 }
@@ -970,6 +970,8 @@ canvas {
 .dashboard {
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  justify-content: start;
 }
 
 .dashboard::-webkit-scrollbar {
@@ -1058,8 +1060,8 @@ canvas {
 
 .botoes-dados {
   width: 100%;
-  margin-top: 195px;
-  margin-bottom: 25px;
+  margin-top: 35px;
+  margin-bottom: 35px;
   display: flex;
   justify-content: center;
 
@@ -1115,7 +1117,7 @@ canvas {
   }
 }
 
-table {
+#table {
   width: 100%;
   border: 1px solid #ffff;
 }
@@ -1126,5 +1128,24 @@ td {
 }
 
 tr {
+  border: 1px solid #ffff;
+}
+
+.containerPartidas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#graficoVencedor {
+  width: 50%;
+}
+
+#tabelaPartidas {
+  width: 50%;
+}
+
+#tablePartidas {
+  width: 90%;
   border: 1px solid #ffff;
 }

@@ -32,8 +32,42 @@ function ranking(req, res) {
     });
 }
 
+function vencedor(req, res) {
+    let fkusuario = req.params.idusuario;
+
+    jogosModel.vencedor(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao cadastrar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function tabela(req, res) {
+    let fkusuario = req.params.idusuario;
+
+    jogosModel.tabela(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao cadastrar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     cadastroPuzzle,
-    ranking
+    ranking,
+    vencedor,
+    tabela
 }
