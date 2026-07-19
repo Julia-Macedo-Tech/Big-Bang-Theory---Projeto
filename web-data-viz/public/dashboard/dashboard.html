@@ -38,7 +38,7 @@
 
             <div class="btn-nav-white">
                 <a href="cards.html">
-                    <p>Aquários e Terrários</p>
+                    <p>Quiz</p>
                 </a>
             </div>
 
@@ -73,7 +73,7 @@
 
                 <div class="botoes-dados">
                     <button class="btnAtual" id="meusDados" onclick="verMeusDados()">Meus dados</button>
-                    <button class="btnNaoAtual" id="ranking" onclick="verRanking()">Ranking mundial</button>
+                    <button class="btnNaoAtual" id="ranking" onclick="verRanking()">Ranking puzzle</button>
                 </div>
 
                 <div id="containerMeusDados">
@@ -101,9 +101,9 @@
                         <div id="tabelaPartidas">
                             <table id="tablePartidas">
                                 <tr>
-                                    <th>Partida</th>
-                                    <th>Vencedor</th>
-                                    <th>Data</th>
+                                    <td>Partida</td>
+                                    <td>Vencedor</td>
+                                    <td>Data</td>
                                 </tr>
                             </table>
                         </div>
@@ -111,6 +111,8 @@
                 </div>
 
                 <div id="containerRanking">
+                    <p id="sua_colocacao">Sua colocação:</p>
+
                     <div class="ranking">
                         <table id="table">
                             <tr>
@@ -135,7 +137,29 @@
 
     let tipoAtual = "Fácil";
 
-    window.onload = exibirAquariosDoUsuario(), validarSessao(), verMeusDados(), exibirPartidasDoUsuario();
+    window.onload = exibirAquariosDoUsuario(), validarSessao(), verMeusDados(), exibirPartidasDoUsuario(), preencherKpi();
+
+    function preencherKpi() {
+        fetch(`/jogos/selectPuzzle/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    kpi_puzzle.innerHTML = `<div><span class="material-symbols-outlined">Extension</span></div>
+                    <p>Recorde de movimentos no puzzle: <p class="destaque">${resposta[0].qtd_movimentos}</p></p> 
+                    <p>Data: ${resposta[0].cadastrado_em}</p>`;
+
+                });
+
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
     function verMeusDados() {
         document.getElementById('containerMeusDados').style.display = "flex"
@@ -161,17 +185,45 @@
                     resposta.reverse();
 
                     let table = document.getElementById('table');
+                    let colocacao = document.getElementById('sua_colocacao');
                     table.innerHTML = `<tr>
-                                <th>Posição</th>
-                                <th>User</th>
-                                <th>Movimentos</th>
+                                <td class="tableTitulo"><span class="material-symbols-outlined">Trophy</span>Posição</td>
+                                <td class="tableTitulo"><span class="material-symbols-outlined">Person</span>User</td>
+                                <td class="tableTitulo"><span class="material-symbols-outlined">Extension</span>Movimentos</td>
                             </tr>`;
                     for (let i = 0; resposta.length > i; i++) {
-                        table.innerHTML += `<tr>
-                                <td>${i + 1}</td>
+                        if (i == 0) {
+                            table.innerHTML += `<tr>
+                                <td class="primeiro">${i + 1}°</td>
+                                <td class="primeiro"><span><img src="../assets/imgs/${resposta[i].foto_usuario}.png" alt="">${resposta[i].nome}</span></td>
+                                <td class="primeiro">${resposta[i].qtd_movimentos}</td>
+                            </tr>`;
+
+                        } else if (i == 1) {
+                            table.innerHTML += `<tr>
+                                <td class="segundo">${i + 1}°</td>
+                                <td class="segundo"><span><img src="../assets/imgs/${resposta[i].foto_usuario}.png" alt="">${resposta[i].nome}</span></td>
+                                <td class="segundo">${resposta[i].qtd_movimentos}</td>
+                            </tr>`;
+
+                        } else if (i == 2) {
+                            table.innerHTML += `<tr>
+                                <td class="terceiro">${i + 1}°</td>
+                                <td class="terceiro"><span><img src="../assets/imgs/${resposta[i].foto_usuario}.png" alt="">${resposta[i].nome}</span></td>
+                                <td class="terceiro">${resposta[i].qtd_movimentos}</td>
+                            </tr>`;
+
+                        } else {
+                            table.innerHTML += `<tr>
+                                <td>${i + 1}°</td>
                                 <td><span><img src="../assets/imgs/${resposta[i].foto_usuario}.png" alt="">${resposta[i].nome}</span></td>
                                 <td>${resposta[i].qtd_movimentos}</td>
                             </tr>`;
+                        }
+
+                        if (idUsuario == resposta[i].id_usuario) {
+                            colocacao.innerHTML = `Sua colocação: ${i + 1}° lugar`;
+                        }
                     }
 
                 });
@@ -201,68 +253,54 @@
             tipoAtual = "Fácil";
             // alterando estilo do botão
             let btnAtual = document.getElementById(`btnAquarioMedio`)
-            if (btnAtual.classList.contains("btn-pink")) {
-                btnAtual.classList.remove("btn-pink")
-            }
+            btnAtual.classList.remove("btn-yellow")
             btnAtual.classList.add("btn-white")
 
             let btnAtual2 = document.getElementById(`btnAquarioDificil`)
-            if (btnAtual2.classList.contains("btn-pink")) {
-                btnAtual2.classList.remove("btn-pink")
-            }
-            btnAtual.classList.add("btn-white")
+            btnAtual2.classList.remove("btn-red")
+            btnAtual2.classList.add("btn-white")
 
             // alterando estilo do botão
             let btnExibir = document.getElementById(`btnAquarioFacil`)
             btnExibir.classList.remove("btn-white")
-            btnExibir.classList.add("btn-pink")
+            btnExibir.classList.add("btn-green")
 
         } else if (tipo == "Médio") {
             tipoAtual = "Médio";
             // alterando estilo do botão
             let btnAtual = document.getElementById(`btnAquarioFacil`)
-            if (btnAtual.classList.contains("btn-pink")) {
-                btnAtual.classList.remove("btn-pink")
-            }
+            btnAtual.classList.remove("btn-green")
             btnAtual.classList.add("btn-white")
 
             let btnAtual2 = document.getElementById(`btnAquarioDificil`)
-            if (btnAtual2.classList.contains("btn-pink")) {
-                btnAtual2.classList.remove("btn-pink")
-            }
-            btnAtual.classList.add("btn-white")
+            btnAtual2.classList.remove("btn-red")
+            btnAtual2.classList.add("btn-white")
 
             // alterando estilo do botão
             let btnExibir = document.getElementById(`btnAquarioMedio`)
             btnExibir.classList.remove("btn-white")
-            btnExibir.classList.add("btn-pink")
+            btnExibir.classList.add("btn-yellow")
 
         } else {
             tipoAtual = "Difícil";
             // alterando estilo do botão
             let btnAtual = document.getElementById(`btnAquarioFacil`)
-            if (btnAtual.classList.contains("btn-pink")) {
-                btnAtual.classList.remove("btn-pink")
-            }
+            btnAtual.classList.remove("btn-green")
             btnAtual.classList.add("btn-white")
 
             let btnAtual2 = document.getElementById(`btnAquarioMedio`)
-            if (btnAtual2.classList.contains("btn-pink")) {
-                btnAtual2.classList.remove("btn-pink")
-            }
-            btnAtual.classList.add("btn-white")
+            btnAtual2.classList.remove("btn-yellow")
+            btnAtual2.classList.add("btn-white")
 
             // alterando estilo do botão
             let btnExibir = document.getElementById(`btnAquarioDificil`)
             btnExibir.classList.remove("btn-white")
-            btnExibir.classList.add("btn-pink")
+            btnExibir.classList.add("btn-red")
         }
 
         document.getElementById("graficos").innerHTML = `
                 <div id="graficoAtual" >
-                    <h3 class="tituloGraficos">
                         <span id="tituloAquarioAtual"></span>
-                    </h3>
                     <div class="graph">
                         <canvas id="myChartCanvas"></canvas>
                     </div>
@@ -280,7 +318,17 @@
     function alterarTitulo(idAquario) {
         var tituloAquario = document.getElementById(`tituloAquarioAtual`)
         var descricao = tipoAtual;
-        tituloAquario.innerHTML = "Últimas medidas do <span style='color: #e6005a'>" + descricao + "</span>"
+
+        if (tipoAtual == "Fácil") {
+            tituloAquario.innerHTML = "<span>Histórico de pontuação no quiz <span style='color: #4cc659'>" + descricao + "</span>";
+
+        } else if (tipoAtual == "Médio") {
+            tituloAquario.innerHTML = "<span>Histórico de pontuação no quiz <span style='color: #ffd600'>" + descricao + "</span>";
+
+        } else if (tipoAtual == "Difícil") {
+            tituloAquario.innerHTML = "<span>Histórico de pontuação no quiz <span style='color: #d5312c'>" + descricao + "</span>";
+
+        }
     }
 
     // O gráfico é construído com três funções:
@@ -303,6 +351,39 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
+
+                    let qtd_maior = 0;
+                    let data = null;
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        let atual = resposta[i].pontuacao_matematica + resposta[i].pontuacao_serie;
+
+                        if (atual >= qtd_maior) {
+                            qtd_maior = atual;
+                            data = resposta[i].cadastrado_em;
+                        }
+                    }
+
+                    kpi_quiz.innerHTML = `<div><span class="material-symbols-outlined">Quiz</span></div>
+                    <p>Recorde de acertos no quiz <span id="tipoQ">${tipo}</span>: <p class="destaque">${qtd_maior}</p></p> 
+                    <p>Data: ${data}</p>`;
+
+                    let tipoQ = document.getElementById(`tipoQ`)
+                    if (tipo == "Fácil") {
+                        tipoQ.classList.add("facil")
+                        tipoQ.classList.remove("medio")
+                        tipoQ.classList.remove("dificil")
+
+                    } else if (tipo == "Médio") {
+                        tipoQ.classList.remove("facil")
+                        tipoQ.classList.add("medio")
+                        tipoQ.classList.remove("dificil")
+
+                    } else if (tipo == "Difícil") {
+                        tipoQ.classList.remove("facil")
+                        tipoQ.classList.remove("medio")
+                        tipoQ.classList.add("dificil")
+                    }
 
                     plotarGrafico(resposta, tipo);
 
@@ -334,14 +415,14 @@
                     label: 'Matemática',
                     data: [],
                     fill: false,
-                    backgroundColor: '#ffffff',
+                    backgroundColor: '#ff751f',
                     tension: 0.1
                 },
                 {
                     label: 'Série',
                     data: [],
                     fill: false,
-                    backgroundColor: 'rgb(199, 52, 52)',
+                    backgroundColor: '#51bca5',
                     tension: 0.1
                 }]
         };
@@ -415,9 +496,7 @@
     function exibirPartidasDoUsuario() {
         document.getElementById("graficoVencedor").innerHTML = `
                 <div id="graficoAtual" >
-                    <h3 class="tituloGraficos">Partidas que você ganhou
-                        <span id="tituloAquarioAtual"></span>
-                    </h3>
+                        <span id="tituloAquarioAtual">Proporção de vitórias e derrotas no jogo de luta</span>
                     <div class="graph">
                         <canvas id="myChartCanvasPartidas"></canvas>
                     </div>
@@ -433,11 +512,14 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
+                    let soma = 0;
+                    let soma_ganho = 0;
+                    let porc = 0;
                     let table = document.getElementById('tablePartidas');
                     table.innerHTML = `<tr>
-                                    <th>Partida</th>
-                                    <th>Vencedor</th>
-                                    <th>Data</th>
+                                    <td class="tableTitulo"><span class="material-symbols-outlined">Trophy</span>Partida</td>
+                                    <td class="tableTitulo"><span class="material-symbols-outlined">Crown</span>Vencedor</td>
+                                    <td class="tableTitulo"><span class="material-symbols-outlined">Today</span>Data</td>
                                 </tr>`;
                     for (let i = 0; resposta.length > i; i++) {
                         table.innerHTML += `<tr>
@@ -445,7 +527,16 @@
                                 <td><span>${resposta[i].vencedor}</span></td>
                                 <td>${resposta[i].cadastrado_em}</td>
                             </tr>`;
+
+                        soma++
+                        if (resposta[i].vencedor == "Você") {
+                            soma_ganho++
+                        }
                     }
+
+                    porc = soma_ganho / soma * 100;
+                    kpi_luta.innerHTML = `<div><span class="material-symbols-outlined">Swords</span></div>
+                    <p>Taxa de vitórias no jogo de luta: <p class="destaque">${porc.toFixed(2)}%</p></p>`;
 
                 });
             } else {
@@ -499,7 +590,7 @@
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let labels = ["Você", "Máquina"];
+        let labels = ["Vitórias", "Derrotas"];
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
@@ -509,7 +600,7 @@
                     label: [],
                     data: [],
                     fill: false,
-                    backgroundColor: ['#ffffff', '#c73434'],
+                    backgroundColor: ['#4cc659', '#c73434'],
                     tension: 0.1
                 }]
         };

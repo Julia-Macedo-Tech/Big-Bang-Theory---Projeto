@@ -10,9 +10,9 @@ function cadastroPuzzle(movimentos, fkusuario) {
 
 function ranking() {
 
-    var instrucaoSql = `select nome, foto_usuario, qtd_movimentos from usuario
+    var instrucaoSql = `select id_usuario, nome, foto_usuario, qtd_movimentos from usuario
 join jogo_puzzle on fk_usuario = id_usuario
-order by qtd_movimentos;`;
+order by qtd_movimentos desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -46,7 +46,7 @@ function tabela(fkusuario) {
 
 function selectPuzzle(fkusuario) {
 
-    var instrucaoSql = `select * from jogo_puzzle where fk_usuario = ${fkusuario};`;
+    var instrucaoSql = `select *, DATE_FORMAT(cadastrado_em, '%d/%m/%Y %H:%i:%s') as cadastrado_em  from jogo_puzzle where fk_usuario = ${fkusuario};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

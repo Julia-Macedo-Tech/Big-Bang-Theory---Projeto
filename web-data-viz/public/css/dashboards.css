@@ -299,9 +299,8 @@ body {
 }
 
 .btn-chart {
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Bazinga";
   border: 0;
-  font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
   margin: 5px;
@@ -309,14 +308,24 @@ body {
   cursor: pointer
 }
 
-.btn-pink {
-  color: white;
-  background-color: #e6005a;
+.btn-green {
+  color: #1a1a2e;
+  background-color: #4cc659;
+}
+
+.btn-yellow {
+  color: #1a1a2e;
+  background-color: #ffd600;
+}
+
+.btn-red {
+  color: #1a1a2e;
+  background-color: #d5312c;
 }
 
 .btn-white {
-  color: #e6005a;
-  background-color: white;
+  color: #ffd600 !important;
+  background-color: #1a1a2e !important;
 
 }
 
@@ -948,6 +957,7 @@ canvas {
     width: 90%;
     margin-bottom: 80px;
   }
+
   .botoesEscolha {
     margin-bottom: 30px;
   }
@@ -1024,14 +1034,113 @@ canvas {
     height: 140px;
     border-radius: 7px;
   }
+
   #kpi_puzzle {
     background-color: #1a1a2e;
+    border: 2px solid #ffd600;
+
+    div span {
+      font-size: 30px;
+      color: #1a1a2e;
+    }
+
+    div {
+      margin-top: 5px;
+      margin-left: 5px;
+      background-color: #ffd600;
+      width: 29px;
+      height: 29px;
+      display: flex;
+      justify-content: center;
+      border-radius: 4px;
+    }
+
+    p {
+      font-size: 18px;
+      text-align: center;
+      margin-top: -23px;
+      margin-bottom: 35px;
+    }
+
+    .destaque {
+      font-size: 38px;
+    }
   }
+
   #kpi_luta {
     background-color: #1a1a2e;
+    border: 2px solid #ffd600;
+
+    div span {
+      font-size: 30px;
+      color: #1a1a2e;
+    }
+
+    div {
+      margin-top: 5px;
+      margin-left: 5px;
+      background-color: #ffd600;
+      width: 29px;
+      height: 29px;
+      display: flex;
+      justify-content: center;
+      border-radius: 4px;
+    }
+
+    p {
+      font-size: 18px;
+      text-align: center;
+      margin-top: -23px;
+      margin-bottom: 35px;
+    }
+
+    .destaque {
+      font-size: 38px;
+    }
   }
+
   #kpi_quiz {
-    background-color: #4cc659;
+    background-color: #1a1a2e;
+    border: 2px solid #ffd600;
+
+    div span {
+      font-size: 30px;
+      color: #1a1a2e;
+    }
+
+    div {
+      margin-top: 5px;
+      margin-left: 5px;
+      background-color: #ffd600;
+      width: 29px;
+      height: 29px;
+      display: flex;
+      justify-content: center;
+      border-radius: 4px;
+    }
+
+    p {
+      font-size: 18px;
+      text-align: center;
+      margin-top: -23px;
+      margin-bottom: 35px;
+    }
+
+    .destaque {
+      font-size: 38px;
+    }
+
+    .facil {
+      color: #4cc659;
+    }
+
+    .medio {
+      color: #ffd600;
+    }
+
+    .dificil {
+      color: #d5312c;
+    }
   }
 }
 
@@ -1080,55 +1189,128 @@ canvas {
 
 #containerRanking {
   width: 100%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -20px;
+}
+
+.primeiro {
+  background-color: #f6b10d;
+  color: #1a1a2e;
+}
+
+.segundo {
+  background-color: #c4c4c4;
+  color: #1a1a2e;
+}
+
+.terceiro {
+  background-color: #ce8946;
+  color: #1a1a2e;
 }
 
 .ranking {
-  background-color: #1a1a2e;
-  width: 40%;
+  width: 50%;
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -20px;
 
   img {
-    width: 20px;
+    width: 37px;
     margin-right: 10px;
+    border-radius: 20px;
+    border: 2px solid #ffd5009c;
   }
 }
 
 #table {
   width: 100%;
-  border: 1px solid #ffff;
+  height: 80%;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#table::-webkit-scrollbar {
+  width: 4px;
+}
+
+#table::-webkit-scrollbar-track {
+  background-color: #ffd600;
+  border-radius: 2px;
+}
+
+#table::-webkit-scrollbar-thumb {
+  background-color: #1a1a2e;
+  border-radius: 2px;
 }
 
 td {
   text-align: center;
-  border: 1px solid #ffff;
+  font-size: 20px;
+  border-radius: 10px;
+  font-family: "Open sans";
 }
 
 tr {
   border: 1px solid #ffff;
+  background-color: #1a1a2e;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.tableTitulo {
+  font-size: 25px !important;
+  background-color: #ffd600;
+  color: #1a1a2e;
+  font-family: "Bazinga" !important;
 }
 
 .containerPartidas {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 #graficoVencedor {
-  width: 50%;
+  width: 40%;
+  display: flex;
+  justify-content: center;
 }
 
 #tabelaPartidas {
   width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 
 #tablePartidas {
-  width: 90%;
-  border: 1px solid #ffff;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#tablePartidas::-webkit-scrollbar {
+  width: 4px;
+}
+
+#tablePartidas::-webkit-scrollbar-track {
+  background-color: #ffd600;
+  border-radius: 2px;
+}
+
+#tablePartidas::-webkit-scrollbar-thumb {
+  background-color: #1a1a2e;
+  border-radius: 2px;
 }
 
 #batalha {
@@ -1141,16 +1323,19 @@ tr {
   img {
     width: 90%;
   }
+
   p {
     font-size: 20px;
     margin-bottom: -5px;
   }
+
   div {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
   }
+
   button {
     color: white;
     background-color: #1a1a2e;
@@ -1165,6 +1350,7 @@ tr {
     border-radius: 5px;
     cursor: pointer;
   }
+
   button img {
     width: 30%;
   }
@@ -1200,4 +1386,18 @@ tr {
 
 #ataques {
   justify-content: center !important;
+}
+
+#tituloAquarioAtual {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#graficoAtual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
