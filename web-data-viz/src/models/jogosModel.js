@@ -44,9 +44,46 @@ function tabela(fkusuario) {
     return database.executar(instrucaoSql);
 }
 
+function selectPuzzle(fkusuario) {
+
+    var instrucaoSql = `select * from jogo_puzzle where fk_usuario = ${fkusuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function updatePuzzle(movimentos, fkusuario) {
+
+    var instrucaoSql = `update jogo_puzzle 
+set cadastrado_em = now()
+where fk_usuario = ${fkusuario};`;
+
+    var instrucaoSql2 = `update jogo_puzzle 
+set qtd_movimentos = ${movimentos}
+where fk_usuario = ${fkusuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    database.executar(instrucaoSql);
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+    return database.executar(instrucaoSql2);
+}
+
+function cadastroLuta(vencedor, fkusuario) {
+
+    var instrucaoSql = `insert into jogo_luta(vencedor, cadastrado_em, fk_usuario) values
+("${vencedor}", now(), ${fkusuario});`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastroPuzzle,
     ranking,
     vencedor,
-    tabela
+    tabela,
+    selectPuzzle,
+    updatePuzzle,
+    cadastroLuta
 }

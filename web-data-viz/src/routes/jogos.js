@@ -19,4 +19,16 @@ router.get("/tabela/:idusuario", function (req, res) {
     jogosController.tabela(req, res);
 })
 
+router.get("/selectPuzzle/:idusuario", function (req, res) {
+    jogosController.selectPuzzle(req, res);
+})
+
+router.get("/updatePuzzle/:movimentos/:idusuario", function (req, res) {
+    jogosController.updatePuzzle(req, res);
+})
+
+router.get("/cadastroLuta/:vencedor/:idusuario", function (req, res) {
+    jogosController.cadastroLuta(req, res);
+})
+
 module.exports = router;

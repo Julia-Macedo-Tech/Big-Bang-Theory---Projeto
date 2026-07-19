@@ -64,10 +64,65 @@ function tabela(req, res) {
     });
 }
 
+function selectPuzzle(req, res) {
+    let fkusuario = req.params.idusuario;
+
+    jogosModel.selectPuzzle(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao cadastrar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function updatePuzzle(req, res) {
+
+    var movimentos = req.params.movimentos;
+    let fkusuario = req.params.idusuario;
+
+    jogosModel.updatePuzzle(movimentos, fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao cadastrar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function cadastroLuta(req, res) {
+
+    var vencedor = req.params.vencedor;
+    let fkusuario = req.params.idusuario;
+
+    jogosModel.cadastroLuta(vencedor, fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao cadastrar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     cadastroPuzzle,
     ranking,
     vencedor,
-    tabela
+    tabela,
+    selectPuzzle,
+    updatePuzzle,
+    cadastroLuta
 }

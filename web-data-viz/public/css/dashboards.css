@@ -993,44 +993,25 @@ canvas {
 }
 
 #jogoComecar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   p {
     text-align: center;
-    font-size: 25px;
+    font-size: 35px;
     margin-top: -4px;
-  }
-  button {
-    width: 180px;
-    height: 180px;
-    cursor: pointer;
-    border: 2px #ffd600 solid;
-    border-radius: 7px;
-  }
-  img {
-    width: 100%;
   }
 }
 
 .vs_img {
-  width: 120px !important;
-  position: absolute;
-  margin-left: 500px;
-  margin-top: 30px;
+  width: 250px !important;
+  margin-bottom: 30px;
 }
 
 .mostrar {
-  margin-bottom: 350px;
-  margin-top: 70px;
-
-  .escolhida_pessoa {
-    position: absolute;
-    width: 220px !important; 
-    margin-left: 230px;
-  }
-  .escolhida_maquina {
-    position: absolute;
-    width: 220px !important; 
-    margin-left: 680px;
-  }
+  display: flex;
+  justify-content: center;
 }
 
 #kpis {
@@ -1148,4 +1129,75 @@ tr {
 #tablePartidas {
   width: 90%;
   border: 1px solid #ffff;
+}
+
+#batalha {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+
+  img {
+    width: 90%;
+  }
+  p {
+    font-size: 20px;
+    margin-bottom: -5px;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  button {
+    color: white;
+    background-color: #1a1a2e;
+    border: 2px solid #ffd600;
+    width: 300px;
+    height: 100px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button img {
+    width: 30%;
+  }
+}
+
+.trocar_pessoa {
+  width: 85px !important;
+  height: 160px !important;
+  border: none !important;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+
+  img {
+    width: 140% !important;
+    height: 120%;
+  }
+}
+
+.trocar_maquina {
+  width: 85px !important;
+  height: 160px !important;
+  border: none !important;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+
+  img {
+    width: 140% !important;
+    height: 120%;
+  }
+}
+
+#ataques {
+  justify-content: center !important;
 }
