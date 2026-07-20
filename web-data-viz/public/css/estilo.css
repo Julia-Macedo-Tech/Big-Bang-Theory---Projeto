@@ -33,7 +33,7 @@ body {
 
 .container {
   display: flex;
-  width: 80%;
+  width: 70%;
   margin: auto;
 }
 
@@ -53,6 +53,8 @@ body {
 .header a {
   text-decoration: none;
   color: #fff;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .agora {
@@ -117,7 +119,7 @@ body {
 /* MISSÃO VISÃO VALORES */
 
 .social {
-  background-color: #e5e5e5;
+  background-color: #fefbf0;
   display: flex;
 }
 
@@ -179,7 +181,7 @@ body {
     width: 250px;
   }
 
-  p{
+  p {
     color: #1a1a2e;
     font-family: "Bazinga";
     font-size: 55px;
@@ -452,5 +454,502 @@ input {
 
   100% {
     transform: rotate(25deg)
+  }
+}
+
+.sobre {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+
+  img {
+    width: 170px;
+  }
+}
+
+.sobreTexto {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-top: 20px;
+  margin-right: 10px;
+
+  p {
+    font-family: "Open sans";
+    font-size: 18px;
+    margin-top: 1px;
+    text-align: justify;
+    color: #68686c;
+  }
+
+  .tituloSobre {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Bazinga";
+    color: #ff751f !important;
+    font-size: 30px;
+
+    div {
+      background-color: #ff751f;
+      width: 60px;
+      height: 60px;
+      border-radius: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      margin-left: 5px;
+      margin-top: 25px;
+      font-family: "Bazinga";
+      font-size: 40px;
+      color: #ff751f !important;
+    }
+  }
+}
+
+.material-symbols-outlined {
+  color: white;
+  font-size: 40px !important;
+  margin-left: 2px;
+}
+
+.cientistas {
+  background-color: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+}
+
+.cientistasTexto {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-top: 20px;
+  margin-right: 10px;
+
+  p {
+    font-family: "Open sans";
+    font-size: 18px;
+    margin-top: 1px;
+    text-align: justify;
+    color: #68686c;
+  }
+
+  .tituloCientistas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: "Bazinga";
+    color: #ffd600 !important;
+    font-size: 30px;
+
+    div {
+      background-color: #ffd600;
+      width: 60px;
+      height: 60px;
+      border-radius: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      margin-left: 5px;
+      margin-top: 25px;
+      font-family: "Bazinga";
+      font-size: 40px;
+      color: #ffd600 !important;
+    }
+  }
+}
+
+.cientistasQuem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.sheldon {
+  background-image: url('../assets/imgs/sheldon.png');
+  background-size: contain;
+  width: 330px;
+  height: 370px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #ffd600;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.leonard {
+  background-image: url('../assets/imgs/leonard.png');
+  background-size: contain;
+  width: 330px;
+  height: 370px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #ffd600;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.howard {
+  background-image: url('../assets/imgs/howard.png');
+  background-size: contain;
+  width: 330px;
+  height: 370px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #ffd600;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.raj {
+  background-image: url('../assets/imgs/raj.png');
+  background-size: contain;
+  width: 330px;
+  height: 370px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #ffd600;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.curiosidadesQuais {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  background-color: #fefbf0;
+}
+
+.curiosidadesTexto {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-top: 20px;
+  margin-right: 10px;
+
+  p {
+    font-family: "Open sans";
+    font-size: 18px;
+    margin-top: 1px;
+    text-align: justify;
+    color: #68686c;
+  }
+
+  .tituloCuriosidades {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: "Bazinga";
+    color: #4cc659 !important;
+    font-size: 30px;
+
+    div {
+      background-color: #4cc659;
+      width: 60px;
+      height: 60px;
+      border-radius: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      margin-left: 5px;
+      margin-top: 25px;
+      font-family: "Bazinga";
+      font-size: 40px;
+      color: #4cc659 !important;
+    }
+  }
+}
+
+.spin {
+  background-image: url('../assets/imgs/young.png');
+  background-size: contain;
+  width: 530px;
+  height: 300px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #1a1a2e;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  div {
+    background-color: #1a1a2e7f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+    color: white;
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: white;
+  }
+}
+
+.math {
+  background-image: url('../assets/imgs/matematica.png');
+  background-size: contain;
+  width: 530px;
+  height: 300px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #1a1a2e;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  div {
+    background-color: #1a1a2e7f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+    color: white;
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: white;
+  }
+}
+
+.principalCuriosidade {
+  display: flex;
+  flex-direction: row;
+}
+
+.planta {
+  background-image: url('../assets/imgs/planta.png');
+  background-size: contain;
+  background-color: #1a1a2e;
+  width: 430px;
+  height: 530px;
+  display: flex;
+  align-items: end;
+  border-radius: 10px;
+  border: 4px solid #1a1a2e;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  div {
+    background-color: #1a1a2e7f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  p {
+    font-family: "Bazinga";
+    color: white;
+  }
+
+  span {
+    font-size: 15px;
+    margin-top: -8px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: white;
+  }
+}
+
+.quiz {
+  background-color: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: white;
+    font-family: "Bazinga Italic";
+    font-size: 30px;
+  }
+  button {
+    margin-bottom: 20px;
+    background-color: #d5312c;
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-family: "Bazinga";
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+.quizTexto {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-top: 20px;
+  margin-right: 10px;
+
+  p {
+    font-family: "Open sans";
+    font-size: 18px;
+    margin-top: 1px;
+    text-align: justify;
+    color: #68686c;
+  }
+
+  .tituloQuiz {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: "Bazinga";
+    color: #d5312c !important;
+    font-size: 30px;
+
+    div {
+      background-color: #d5312c;
+      width: 60px;
+      height: 60px;
+      border-radius: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      margin-left: 5px;
+      margin-top: 25px;
+      font-family: "Bazinga";
+      font-size: 40px;
+      color: #d5312c !important;
+    }
   }
 }

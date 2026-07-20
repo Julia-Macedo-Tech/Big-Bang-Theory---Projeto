@@ -450,37 +450,44 @@
         if (soma == 9) {
             fetch(`/jogos/selectPuzzle/${idusuario}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        resposta.reverse();
+                    if (response.status == 200) {
+                        response.json().then(function (resposta) {
+                            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                            resposta.reverse();
 
-                        if (resposta.length > 0) {
-                            if (movimentos_numero < resposta[0].qtd_movimentos) {
-                                update();
+                            if (resposta.length > 0) {
+                                if (movimentos_numero < resposta[0].qtd_movimentos) {
+                                    update();
+
+                                } else {
+                                    setTimeout(() => {
+                                        alert("Você ganhou, parabéns!")
+                                        window.location = "jogos.html";
+                                    }, 1000);
+                                }
 
                             } else {
-                                setTimeout(() => {
-                                    alert("Você ganhou, parabéns!")
-                                    window.location = "jogos.html";
-                                }, 1000);
+                                console.log("caiu else 1")
+                                cadastrar();
                             }
 
-                        } else {
-                            cadastrar();
-                        }
-
-                    });
+                        });
+                    } else {
+                        cadastrar();
+                    }
 
                 } else {
+                    console.log("caiu else 2")
                     console.error('Nenhum dado encontrado ou erro na API');
                 }
             })
                 .catch(function (error) {
+                    console.log("caiu catch")
                     console.error(`Erro no cadastro dos dados p/ gráfico: ${error.message}`);
                 });
 
         } else {
-
+            console.log(soma)
         }
     }
 

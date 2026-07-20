@@ -457,6 +457,21 @@ canvas {
   font-size: 30px;
 }
 
+#movimentos_div .material-symbols-outlined {
+  color: #1a1a2e;
+  font-size: 30px !important;
+}
+
+button .material-symbols-outlined {
+  color: #1a1a2e !important;
+  font-size: 30px !important;
+}
+
+div .material-symbols-outlined {
+  color: #1a1a2e !important;
+  font-size: 30px !important;
+}
+
 .btn-logout {
   margin: 0;
   padding: 0;
@@ -1215,8 +1230,8 @@ canvas {
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   flex-direction: column;
   margin-top: -20px;
 

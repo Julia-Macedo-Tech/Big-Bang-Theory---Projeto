@@ -2,80 +2,164 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Página Inicial</title>
+  <title>AquaTech | Página Inicial</title>
 
-    <script src="./js/sessao.js"></script>
+  <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="./css/estilo.css">
+  <link rel="icon" href="./assets/icon/favicon2.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">BBT</h1>
-        <ul class="navbar">
-          <li>
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
+  <div class="header">
+    <div class="container">
+      <h1 class="titulo">BBT</h1>
+      <ul class="navbar">
+        <li>
+          <a href="#sobre">Sobre</a>
+        </li>
+        <li>
+          <a href="#cientistas">Cientistas</a>
+        </li>
+        <li>
+          <a href="#curiosidades">Curiosidades</a>
+        </li>
+        <li>
+          <a href="#quiz">Quiz</a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="login.html">Login</a>
+        </li>
+        <li>
+          <a href="cadastro.html">Cadastro</a>
+        </li>
+      </ul>
     </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>The Big Bang <span>Theory</span></p>
-      </div>
+  </div>
+
+  <div class="banner">
+    <div class="container">
+      <p>The Big Bang <span>Theory</span></p>
     </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+  </div>
+
+  <div class="social" id="sobre">
+    <div class="sobre">
+      <div class="sobreTexto">
+        <div class="tituloSobre">
+          <div><span class="material-symbols-outlined">Error</span></div>
+          <p>Sobre a série</p>
+        </div>
+        <p>Criada por Chuck Lorre e Bill Prady, a série estreou na CBS como uma aposta arriscada: transformar nerds,
+          convenções de quadrinhos e referências científicas em comédia de massa. O resultado foi um fenômeno global que
+          dominou as audiências por mais de uma década. Com um elenco carismático, roteiros afiados e uma trilha sonora
+          marcada pelo tema icônico de Barenaked Ladies, a série equilibrou piadas inteligentes com momentos genuínos de
+          emoção, mostrando que até os mentes mais lógicas são vulneráveis ao amor e à amizade.</p>
+      </div>
+      <img src="assets/imgs/sobre.png" alt="">
+    </div>
+  </div>
+
+  <div class="cientistas" id="cientistas">
+    <div class="sobre">
+      <div class="cientistasTexto">
+        <div class="tituloCientistas">
+          <div><span class="material-symbols-outlined">Person</span></div>
+          <p>Os cientistas</p>
         </div>
       </div>
     </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
+
+    <div class="cientistasQuem">
+      <div class="sheldon">
+        <div>
+          <p>Sheldon</p><span>Um físico teórico extremamente inteligente, conhecido por sua rotina rígida e suas
+            manias</span>
+        </div>
+      </div>
+      <div class="leonard">
+        <div>
+          <p>Leonard</p><span>Trabalha como físico experimental e é o mais calmo e sociável do grupo.</span>
+        </div>
       </div>
     </div>
-  </body>
+    <div class="cientistasQuem">
+      <div class="howard">
+        <div>
+          <p>Howard</p><span>Um engenheiro aeroespacial e ficou marcado por seu humor exagerado e por ter ido ao
+            espaço.</span>
+
+        </div>
+      </div>
+      <div class="raj">
+        <div>
+          <p>Raj</p><span>Astrofísico e ficou conhecido por sua timidez ao falar com mulheres no início da série.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="curiosidadesQuais" id="curiosidades">
+    <div class="sobre">
+      <div class="curiosidadesTexto">
+        <div class="tituloCuriosidades">
+          <div><span class="material-symbols-outlined">Lightbulb</span></div>
+          <p>Curiosidades</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="principalCuriosidade">
+      <div class="curiosidadesQuais">
+        <div class="spin">
+          <div>
+            <p>Spin-off</p><span>A série possui um spin-off chamado Young Sheldon, que mostra a infância de Sheldon
+              Cooper
+              antes
+              da série principal.</span>
+          </div>
+        </div>
+        <div class="math">
+          <div>
+            <p>Matemática</p><span>Além da comédia, The Big Bang Theory também traz ciência e matemática em várias
+              cenas,
+              com fórmulas e cálculos reais usados nos quadros dos personagens.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="planta">
+        <div>
+          <p>Planta</p><span>The Big Bang Theory possui uma planta oficial do andar onde Sheldon e Leonard moram,
+            mostrando os dois apartamentos, o corredor e as escadas.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" id="quiz">
+    <div class="sobre">
+      <div class="quizTexto">
+        <div class="tituloQuiz">
+          <div><span class="material-symbols-outlined">Quiz</span></div>
+          <p>Faça nosso quiz</p>
+        </div>
+      </div>
+    </div>
+
+    <p>E descubra se conhece mais sobre matemática ou a série Big Bang Theory e tenha acesso a jogos exclusivos!</p>
+
+    <a href="login.html"><button>Fazer</button></a>
+  </div>
+
+</body>
 
 </html>
